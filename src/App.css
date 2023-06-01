@@ -235,6 +235,8 @@ p {
   grid-template-columns: repeat(3, 100px);
   gap: 10px;
 }
+
+/* aside */
 #aside {
   position: fixed;
   top: 50%;
