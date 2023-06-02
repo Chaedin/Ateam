@@ -2,6 +2,7 @@ import React from 'react';
 import { MainpageItem1, MainpageItem2 } from '../elements/mainpageitem';
 import mainimg1 from '../image/temp_main_img_tonedown.jpg'
 import Topimg from '../elements/topimg';
+import '../css/main.css';
 
 const Main = () => {
 
