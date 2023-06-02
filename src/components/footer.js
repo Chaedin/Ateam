@@ -5,7 +5,7 @@ import img3 from '../image/pexels-yusuf-arslan-3640668.jpg';
 import img4 from '../image/pexels-anis-salmani-11711835.jpg';
 import img5 from '../image/pexels-mathilde-langevin-10897665.jpg';
 import img6 from '../image/pexels-karolina-grabowska-8361486.jpg';
-
+import '../css/footer.css';
 
 const Footer = () => {
     return (
@@ -27,7 +27,7 @@ const Footer = () => {
             </div>
             <div className="footer_information">
                 <h3>Shop Information</h3>
-                <p>AM 10:00 - PM 6:00, 주말 밑 공휴일은 휴무입니다</p>
+                <p>AM 10:00 - PM 6:00, 주말 및 공휴일은 휴무입니다</p>
                 <p>
                     상호 ateam, 대표 연아람<br />
                     캘리포니아 쿠퍼티노<br />
