@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBasketShopping, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
+import '../css/aside.css';
 
 const Aside = () => {
     return (
