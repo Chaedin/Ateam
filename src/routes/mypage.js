@@ -3,6 +3,7 @@ import mainimg1 from '../image/temp_main_img_tonedown.jpg';
 import Mypageitem from '../elements/mypageitem';
 import ModalBasic from "../elements/modalbasic";
 import Topimg from '../elements/topimg';
+import '../css/mypage.css';
 
 const Mypage = () => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -22,11 +23,10 @@ const Mypage = () => {
                         <div className="profile_img"></div>
                         <ul className="member_info">
                             <li>백채린 님</li>
-                            <li>
-                                보유 쿠폰 :{' '}
+                            <li className="layoutCoupon">
+                                보유 포인트 :{' '}
                                 <div>
-                                    <span className="coupon" onClick={showModal}>
-                                        2</span>개
+                                    <span className="coupon" onClick={showModal}>2</span>개
                                     {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
                                 </div>
                                 {modalOpen && (

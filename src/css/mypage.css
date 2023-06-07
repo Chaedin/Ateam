@@ -1,0 +1,170 @@
+/* mypage 페이지 css  (start) */
+
+.myPage_container {
+    width: 80%;
+    margin: 100px auto;
+}
+
+.myPageText {
+    font-size: var(--font-large);
+    border-bottom: 2px solid;
+    width: 200px;
+    margin: auto;
+}
+
+.myPage_container hr {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+/* 내 프로필 */
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 400px;
+}
+
+.profile .profile_img {
+    background: url(../image/team_logo.png) center/cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid;
+}
+
+.member_info {
+    width: 200px;
+    text-align: right;
+    font-size: var(--font-small);
+
+}
+
+
+
+.member_info li:nth-of-type(1) {
+    font-size: var(--font-medium);
+    padding-bottom: 20px;
+}
+
+.member_info span {
+    text-decoration: underline;
+    color: var(--clolor-light-grey);
+    cursor: pointer;
+}
+
+
+/* 주문상품내역, 배송조회 */
+.order_check_all {
+    width: 100%;
+}
+
+.order table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.order h2 {
+    margin-bottom: 20px;
+}
+
+.mypageTd,
+.mypageTr {
+    border: 1px solid #616161;
+    width: 200px;
+    height: 150px;
+}
+
+.order th:nth-of-type(2),
+.order td:nth-of-type(2) {
+    width: 300px;
+}
+
+th {
+    height: 40px;
+    border-color: #616161;
+    color: var(--color-white);
+}
+
+.delivery span {
+    text-decoration: underline;
+    color: var(--clolor-light-grey);
+    cursor: pointer;
+}
+
+.order_info {
+    background-color: black;
+    border: 1px solid #616161;
+}
+
+.order_main img {
+    background-position: center;
+    background-size: cover;
+    width: 150px;
+    height: 100px;
+}
+
+
+/* responsive web */
+
+@media screen and (max-width: 768px) {
+    :root {
+        /* font-size */
+        --font-large: 1.875rem;
+        --font-mdeium: 1.125rem;
+        --font-regular: 1rem;
+        --font-small: 0.875rem;
+        --font-micro: 0.75rem;
+    }
+
+    .navbar__toggle-btn {
+        display: block;
+    }
+
+    .nav_menu {
+        flex-direction: column;
+        position: absolute;
+        width: 100%;
+        background-color: var(--color-white);
+        opacity: 0.9;
+        top: 95px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding-bottom: 5px;
+    }
+
+    .nav_search {
+        display: none;
+    }
+
+
+}
+
+.modalsize {
+    width: 450px;
+    height: 500px;
+    z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.inputcoupon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+/* mypage 페이지 css  (end) */
