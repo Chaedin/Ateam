@@ -4,6 +4,7 @@ import Itemmainbutton from '../elements/itemmainbutton';
 import mainimg1 from '../image/temp_main_img_tonedown.jpg';
 import buttondata from '../elements/buttondata';
 import Topimg from '../elements/topimg';
+import '../css/itemmain.css';
 
 const Itemmain = () => {
     const items = [MainpageItem1, MainpageItem2, MainpageItem3, MainpageItem1, MainpageItem2, MainpageItem3, MainpageItem1, MainpageItem2, MainpageItem3];
