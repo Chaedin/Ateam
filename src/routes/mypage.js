@@ -3,7 +3,7 @@ import mainimg1 from '../image/temp_main_img_tonedown.jpg';
 import Mypageitem from '../elements/mypageitem';
 import ModalBasic from "../elements/modalbasic";
 import Topimg from '../elements/topimg';
-import '../css/mypage.css';
+import style from '../css/mypage.module.css';
 
 const Mypage = () => {
     const [modalOpen, setModalOpen] = useState(false);

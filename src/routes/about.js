@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import banner1 from '../image/about_banner1.jpg'
 import banner2 from '../image/about_banner2.jpg'
 import banner3 from '../image/about_banner3.jpg'
-import '../css/about.css';
+import style from '../css/about.module.css';
 
 const About = () => {
 

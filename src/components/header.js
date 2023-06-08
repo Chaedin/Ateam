@@ -3,7 +3,7 @@ import teamLogo from '../image/team_logo.png';
 import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import '../css/header.css';
+import style from '../css/header.module.css';
 
 
 const Header = () => {

@@ -5,7 +5,7 @@ import img3 from '../image/pexels-yusuf-arslan-3640668.jpg';
 import img4 from '../image/pexels-anis-salmani-11711835.jpg';
 import img5 from '../image/pexels-mathilde-langevin-10897665.jpg';
 import img6 from '../image/pexels-karolina-grabowska-8361486.jpg';
-import '../css/footer.css';
+import style from '../css/footer.module.css';
 
 const Footer = () => {
     return (

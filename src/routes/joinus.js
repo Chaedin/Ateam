@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import '../css/joinus.css';
+import style from '../css/joinus.module.css';
 
 
 const Joinus = () => {

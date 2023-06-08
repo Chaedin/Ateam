@@ -4,7 +4,7 @@ import img1 from '../image/컬러네이버.png'
 import img2 from '../image/컬러카카오.png'
 import img3 from '../image/컬러구글.png'
 import { Link } from 'react-router-dom';
-import '../css/login.css';
+import style from '../css/login.module.css';
 
 
 const Login = () => {
