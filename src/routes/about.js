@@ -1,7 +1,4 @@
 import React, {useEffect} from 'react';
-import banner1 from '../image/about_banner1.jpg'
-import banner2 from '../image/about_banner2.jpg'
-import banner3 from '../image/about_banner3.jpg'
 import style from '../css/about.module.css';
 
 const About = () => {
@@ -42,7 +39,7 @@ const About = () => {
                 <p className={style.eco__p}>향수란 단순 향기가 아닌 나의 정체성을 의미합니다</p>
                 <p className={style.eco__p}>나에게 맞는 향수를 찾는 것은 나의 정체성을 찾는 과정입니다</p>
                 <div className={style.about__img}>
-                    <img src={banner1} alt="" />
+                    <img src={require("../image/about_banner1.jpg")} alt="" />
                 </div>
             </div>
             <div className={`${style.about__container} ${style.pop}`}>
@@ -51,7 +48,7 @@ const About = () => {
                 <p className={style.eco__p}>전 세게에 있는 많은 브랜드와 수만 개의 향수 중 당신의 향수를 찾는 것은 운명과 같습니다</p>
                 <p className={style.eco__p}>하지만 저희는 단순히 향과 사람만을 이어주는것에 그치지 않습니다</p>
                 <div className={style.about__img}>
-                    <img src={banner2} alt="" />
+                    <img src={require("../image/about_banner2.jpg")} alt="" />
                 </div>
             </div>
             <div className={`${style.about__container} ${style.pop}`}>
@@ -102,7 +99,7 @@ const About = () => {
                 <p className={style.eco__p}>자연을 파괴하는 향수가 아닌 자연을 지킬 수 있으며</p>
                 <p className={style.eco__p}>자연으로부터 잠시 그 향을 빌려온다는 생각으로 친환경적인 향수를 제조할 수 있도록 노력하겠습니다</p>
                 <div className={style.about__img}>
-                    <img src={banner3} alt="" />
+                    <img src={require("../image/about_banner3.jpg")} alt="" />
                 </div>
             </div>
         </section>
