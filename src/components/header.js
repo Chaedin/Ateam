@@ -9,29 +9,29 @@ import style from '../css/header.module.css';
 const Header = () => {
   
     return (
-        <header id="header">
-            <div className="main_logo">
+        <header id={style.header}>
+            <div className={style.main_logo}>
                 <Link to='/'>
                     <img src={teamLogo} alt="" />
                 </Link>
             </div>
-            <ul className="nav_menu">
-        <li className="nav_menu_item"><Link to="/">HOME</Link></li>
-        <li className="nav_menu_item"><Link to="/about">ABOUT</Link></li>
-        <li className="nav_menu_item"><Link to="/itemmain">PRODUCT</Link></li>
-        <li className="nav_menu_item"><Link to="/mypage">MyPage</Link></li>
-        <li className="nav_menu_item"><Link to="/cspage">C/S</Link></li>
+            <ul className={style.nav_menu}>
+        <li className={style.nav_menu_item}><Link to="/">HOME</Link></li>
+        <li className={style.nav_menu_item}><Link to="/about">ABOUT</Link></li>
+        <li className={style.nav_menu_item}><Link to="/itemmain">PRODUCT</Link></li>
+        <li className={style.nav_menu_item}><Link to="/mypage">MyPage</Link></li>
+        <li className={style.nav_menu_item}><Link to="/cspage">C/S</Link></li>
       </ul>
-      <div className="nav_search">
-        <form className="search_form"></form>
-        <input className="search_bar" type="text" />
+      <div className={style.nav_search}>
+        <form className={style.search_form}></form>
+        <input className={style.search_bar} type="text" />
         <button type="submit"></button>
-        <button className="search_btn">
+        <button className={style.search_btn}>
           <i className="fa-solid fa-magnifying-glass"><FontAwesomeIcon icon={faSearch} /></i>
         </button>
       </div>
 
-      <button className="navbar__toggle-btn">
+      <button className={style.navbar__toggle_btn}>
         <i className="fa-solid fa-bars"></i>
       </button>
       </header>

@@ -7,9 +7,14 @@
   padding: 5px 30px;
 }
 
-.main_logo {
-  min-width: 3.125rem;
+
+/* ***************min-width 안먹는거 추후해결******************* */
+.main_logo img {
+  /* min-width: 3.125rem; */
+  width: 100px;
+  height: 100px;
 }
+
 
 .nav_menu {
   display: flex;
@@ -87,7 +92,7 @@
     --font-micro: 0.75rem;
   }
 
-  .navbar__toggle-btn {
+  .navbar__toggle_btn {
     display: block;
   }
 
