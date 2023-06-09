@@ -9,9 +9,9 @@ import style from '../css/footer.module.css';
 
 const Footer = () => {
     return (
-        <footer id="footer">
-            <div className="footer_about">
-                <div className="footer_about_anker">
+        <footer id={style.footer}>
+            <div className={style.footer_about}>
+                <div className={style.footer_about_anker}>
                     <h3>ATEAM</h3>
                     <a href="subPage/Aboutus/index.html">About</a>
                     <a href="#">Guide</a>
@@ -25,7 +25,7 @@ const Footer = () => {
                     <p>예금주: 연아람</p>
                 </div>
             </div>
-            <div className="footer_information">
+            <div className={style.footer_information}>
                 <h3>Shop Information</h3>
                 <p>AM 10:00 - PM 6:00, 주말 및 공휴일은 휴무입니다</p>
                 <p>
@@ -37,9 +37,9 @@ const Footer = () => {
                     이메일 admin@xxx.com<br />
                 </p>
             </div>
-            <div className="footer_instagram">
+            <div className={style.footer_instagram}>
                 <h3>Instagram by @ateam</h3>
-                <ul className="footer_instagram_img">
+                <ul className={style.footer_instagram_img}>
                     <li>
                         <img src={img1} alt="" />
                     </li>
