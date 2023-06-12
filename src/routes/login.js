@@ -39,87 +39,87 @@ const Login = () => {
             <Topimg />
 
             <section>
-                <div className="main_container">
-                    <div className="login_container">
-                        <h1 className="login">Login</h1>
-                        <div className="members">
-                            <button className="visible">회원 로그인</button>
+                <div className={style.main_container}>
+                    <div className={style.login_container}>
+                        <h1 className={style.login}>Login</h1>
+                        <div className={style.members}>
+                            <button className={style.visible}>회원 로그인</button>
                             <button>비회원 로그인</button>
                         </div>
                         <form onSubmit={handleSubmit}>
-                            <div className="box member_box show">
-                                <div className="login_id">
+                            <div className={`${style.box} ${style.member_box}${style.show}`}>
+                                <div className={style.login_id}>
                                     <input
                                         type="text"
-                                        className="member_id"
+                                        className={style.member_id}
                                         name="id"
                                         placeholder="ID"
                                         value={id}
                                         onChange={handleIdChange}
                                         required
                                     />
-                                    <p className="warning_id" style={{ display: 'none', color: 'red', fontSize: 'smaller' }}>
+                                    <p className={style.warning_id} style={{ display: 'none', color: 'red', fontSize: 'smaller' }}>
                                         아이디가 입력되지 않았습니다.
                                     </p>
                                 </div>
-                                <div className="login_pw">
+                                <div className={style.login_pw}>
                                     <input
                                         type="password"
-                                        className="member_pw"
+                                        className={style.member_pw}
                                         name="pw"
                                         placeholder="PASSWORD"
                                         value={password}
                                         onChange={handlePasswordChange}
                                         required
                                     />
-                                    <p className="warning_pw" style={{ display: 'none', color: 'red', fontSize: 'smaller' }}>
+                                    <p className={style.warning_pw} style={{ display: 'none', color: 'red', fontSize: 'smaller' }}>
                                         비밀번호가 입력되지 않았습니다.
                                     </p>
                                 </div>
                             </div>
 
-                            <div className="box non_member_box">
-                                <div className="non_member_login_id">
+                            <div className={`${style.box} ${style.non_member_box}`}>
+                                <div className={style.non_member_login_id}>
                                     <input
                                         type="text"
-                                        className="non_member_id"
+                                        className={style.non_member_id}
                                         name="id_nonmember"
                                         placeholder="PHONE NUMBER (-빼고 입력하세요.)"
                                         value={nonMemberId}
                                         onChange={handleNonMemberIdChange}
                                         required
                                     />
-                                    <p className="warning_id" style={{ display: 'none', color: 'red', fontSize: 'smaller' }}>
+                                    <p className={style.warning_id} style={{ display: 'none', color: 'red', fontSize: 'smaller' }}>
                                         비회원 정보가 올바르지 않습니다.
                                     </p>
                                 </div>
-                                <div className="non_member_login_pw">
+                                <div className={style.non_member_login_pw}>
                                     <input
                                         type="password"
-                                        className="non_member_pw"
+                                        className={style.non_member_pw}
                                         name="pw_nonmember"
                                         placeholder="임시 비밀번호 4자리 "
                                         value={nonMemberPassword}
                                         onChange={handleNonMemberPasswordChange}
                                         required
                                     />
-                                    <p className="warning_pw" style={{ display: 'none', color: 'red', fontSize: 'smaller' }}>
+                                    <p className={style.warning_pw} style={{ display: 'none', color: 'red', fontSize: 'smaller' }}>
                                         비밀번호가 입력되지 않았습니다.
                                     </p>
                                 </div>
                             </div>
-                            <div className="login_enter">
-                                <button type="submit" className="login_login" id="send">
+                            <div className={style.login_enter}>
+                                <button type="submit" className={style.login_login} id="send">
                                     로그인
                                 </button>
                             </div>
                         </form>
 
-                        <div className="login_middle">
-                            <a href="#" className="find">
+                        <div className={style.login_middle}>
+                            <a href="#" className={style.find}>
                                 ID/PW 찾기
                             </a>
-                            <Link to='/joinus' className="join">
+                            <Link to='/joinus' className={style.join}>
                                 회원가입
                             </Link>
                         </div>
