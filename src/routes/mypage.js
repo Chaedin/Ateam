@@ -1,40 +1,23 @@
-import React, { useState } from 'react';
-import mainimg1 from '../image/temp_main_img_tonedown.jpg';
+import React from 'react';
 import Mypageitem from '../elements/mypageitem';
-import ModalBasic from "../elements/modalbasic";
 import Topimg from '../elements/topimg';
 import style from '../css/mypage.module.css';
 
 const Mypage = () => {
-    const [modalOpen, setModalOpen] = useState(false);
-
-    const showModal = () => {
-        setModalOpen(true);
-    };
 
     return (
         <>
             <Topimg />
 
             <section>
-                <div className="myPage_container">
-                    <h1 className="myPageText">My Page</h1>
-                    <div className="profile">
-                        <div className="profile_img"></div>
-                        <ul className="member_info">
+                <div className={style.myPage_container}>
+                    <h1 className={style.myPageText}>My Page</h1>
+                    <div className={style.profile}>
+                        <div className={style.profile_img}></div>
+                        <ul className={style.member_info}>
                             <li>백채린 님</li>
-                            <li className="layoutCoupon">
+                            <li className={style.layoutCoupon}>
                                 보유 포인트 :{' '}
-                                <div>
-                                    <span className="coupon" onClick={showModal}>2</span>개
-                                    {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
-                                </div>
-                                {modalOpen && (
-                                    <div className="popup">
-                                        <div className="popup-content">
-                                        </div>
-                                    </div>
-                                )}
                             </li>
                             <li>
                                 <span>회원 정보 수정</span>
@@ -42,11 +25,11 @@ const Mypage = () => {
                         </ul>
                     </div>
                     <hr />
-                    <div className="order_check_all">
-                        <div className="order">
+                    <div className={style.order_check_all}>
+                        <div className={style.order}>
                             <h2>주문내역</h2>
                             <table>
-                                <tr className="order_info">
+                                <tr className={style.order_info}>
                                     <th></th>
                                     <th>상품 이름</th>
                                     <th>상품 가격</th>
