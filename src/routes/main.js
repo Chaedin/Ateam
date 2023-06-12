@@ -1,12 +1,13 @@
 import React from 'react';
-import { MainpageItem1, MainpageItem2 } from '../elements/mainpageitem';
+// import { MainpageItem1, MainpageItem2 } from '../elements/mainpageitem';
+import Products from '../products/productList'
 import Topimg from '../elements/topimg';
 import style from '../css/main.module.css';
 
 const Main = () => {
 
-    const items = [MainpageItem1, MainpageItem2];
-    // 다른 아이템 추가할 시 ,mainpageitem에 함수 생성수 배열에 집어넣어서 map 사용
+    // const items = [MainpageItem1, MainpageItem2];
+    // // 다른 아이템 추가할 시 ,mainpageitem에 함수 생성수 배열에 집어넣어서 map 사용
 
     return (
         <main>
@@ -36,30 +37,14 @@ const Main = () => {
                     <h2>BEST SELLER</h2>
                 </div>
 
-                <ul className={style.best_seller_items}>
-
-                    {Array(8).fill().map((nouse, index) => {
-                        const Item1 = items[0];
-                        return <Item1 key={index} />;
-                    })}
-
-                </ul>
+        <Products/>
             </section>
 
             <section id={style.new_arrival}>
                 <div className={style.new_arrival_title}>
                     <h2>NEW ARRIVAL</h2>
                 </div>
-                <ul className={style.new_arrival_items}>
-
-                    {
-                        Array(8).fill().map((nouse, index) => {
-                            const Item2 = items[1];
-                            return <Item2 key={index} />
-                        })
-
-                    }
-                </ul>
+                <Products/>
             </section>
 
         </main>
