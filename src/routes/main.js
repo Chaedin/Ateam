@@ -13,8 +13,8 @@ const Main = () => {
         <main>
             <Topimg/>
             
-            <section id="discription_story">
-                <div className="discriptino_story_text">
+            <section id={style.discription_story}>
+                <div className={style.discriptino_story_text}>
                     <h2>자연을 품으며 자연을 지키는 향수</h2>
                     <p>
                         저희 Ateam은 자연의 가치를 중요하게 생각합니다.<br />
@@ -22,22 +22,22 @@ const Main = () => {
                         <br />자연과 공존하며 자연의 향을 품을 수 있도록 노력하겠습니다.
                     </p>
                 </div>
-                <div className="discription_content">
-                    <div className="discription_content_left"></div>
-                    <div className="discription_content_center">
-                        <div className="discription_content_center_top"></div>
-                        <div className="discription_contenst_center_bottom"></div>
+                <div className={style.discription_content}>
+                    <div className={style.discription_content_left}></div>
+                    <div className={style.discription_content_center}>
+                        <div className={style.discription_content_center_top}></div>
+                        <div className={style.discription_contenst_center_bottom}></div>
                     </div>
-                    <div className="discription_content_right"></div>
+                    <div className={style.discription_content_right}></div>
                 </div>
             </section>
 
-            <section id="best_seller">
-                <div className="best_seller_title">
+            <section id={style.best_seller}>
+                <div className={style.best_seller_title}>
                     <h2>BEST SELLER</h2>
                 </div>
 
-                <ul className="best_seller_items">
+                <ul className={style.best_seller_items}>
 
                     {Array(8).fill().map((nouse, index) => {
                         const Item1 = items[0];
@@ -47,11 +47,11 @@ const Main = () => {
                 </ul>
             </section>
 
-            <section id="new_arrival">
-                <div className="new_arrival_title">
+            <section id={style.new_arrival}>
+                <div className={style.new_arrival_title}>
                     <h2>NEW ARRIVAL</h2>
                 </div>
-                <ul className="new_arrival_items">
+                <ul className={style.new_arrival_items}>
 
                     {
                         Array(8).fill().map((nouse, index) => {

@@ -2,6 +2,8 @@ import React from 'react';
 import itemimg1 from '../image/pexels-karolina-grabowska-8361484.jpg';
 import itemimg2 from '../image/pexels-karolina-grabowska-8361526.jpg';
 import itemimg3 from '../image/pexels-karolina-grabowska-8361538.jpg';
+
+
 function MainpageItem1() {
     return (
         <li className="best_seller_item" data-type='2'>
