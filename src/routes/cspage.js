@@ -11,18 +11,18 @@ const Cspage = () => {
     return (
         <main>
             <nav>
-                <div className="navbar_child buttonstyle">
+                <div className={`${style.navbar_child}${style.buttonstyle}`}>
                     <span>고객센터</span>
                 </div>
             </nav>
-            <div className="inputbox_wrapper">
+            <div className={style.inputbox_wrapper}>
                 <input id="searchInput" type="text" placeholder="자주묻는 질문 검색" />
                 <button>
                     <i><FontAwesomeIcon icon={faSearch}/></i>
                 </button>
             </div>
 
-            <div className="button_box">
+            <div className={style.button_box}>
                 <Cspagebutton dataCategory="*" buttonName="전체" />
                 <Cspagebutton dataCategory="shipping" buttonName="배송문의" />
                 <Cspagebutton dataCategory="change" buttonName="취소/교환" />
