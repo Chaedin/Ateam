@@ -6,7 +6,7 @@ import Main from './components/main/main';
 import Aside from './components/aside/aside';
 import About from './components/about/about';
 import Itemmain from './components/itemmain/itemmain';
-import Mypage from './routes/mypage';
+import Mypage from './components/mypage/mypage';
 import Cspage from './components/cspage/cspage';
 import Login from './components/login/login';
 import Joinus from './components/joinus/joinus';
