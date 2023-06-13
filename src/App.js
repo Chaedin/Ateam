@@ -9,7 +9,7 @@ import Itemmain from './components/itemmain/itemmain';
 import Mypage from './routes/mypage';
 import Cspage from './components/cspage/cspage';
 import Login from './routes/login';
-import Joinus from './routes/joinus';
+import Joinus from './components/joinus/joinus';
 function App() {
   return (
     <>
