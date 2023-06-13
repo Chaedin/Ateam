@@ -4,7 +4,7 @@ import Header from './components/header/header';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './routes/main';
 import Aside from './components/aside/aside';
-import About from './routes/about';
+import About from './components/about/about';
 import Itemmain from './routes/itemmain';
 import Mypage from './routes/mypage';
 import Cspage from './routes/cspage';
