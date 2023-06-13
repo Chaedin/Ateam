@@ -8,7 +8,7 @@ import About from './components/about/about';
 import Itemmain from './components/itemmain/itemmain';
 import Mypage from './routes/mypage';
 import Cspage from './components/cspage/cspage';
-import Login from './routes/login';
+import Login from './components/login/login';
 import Joinus from './components/joinus/joinus';
 function App() {
   return (
