@@ -7,7 +7,7 @@ import Aside from './components/aside/aside';
 import About from './components/about/about';
 import Itemmain from './routes/itemmain';
 import Mypage from './routes/mypage';
-import Cspage from './routes/cspage';
+import Cspage from './components/cspage/cspage';
 import Login from './routes/login';
 import Joinus from './routes/joinus';
 function App() {
