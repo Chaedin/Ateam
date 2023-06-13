@@ -1,7 +1,7 @@
 import React from 'react';
 // import { MainpageItem1, MainpageItem2 } from '../elements/mainpageitem';
 import Products from '../products/productList'
-import Topimg from '../elements/topimg';
+import Topimg from '../components/topimg/topimg';
 import style from '../css/main.module.css';
 
 const Main = () => {

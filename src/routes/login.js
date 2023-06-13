@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Topimg from '../elements/topimg';
+import Topimg from '../components/topimg/topimg';
 import img1 from '../image/컬러네이버.png'
 import img2 from '../image/컬러카카오.png'
 import img3 from '../image/컬러구글.png'

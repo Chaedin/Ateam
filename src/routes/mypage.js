@@ -1,6 +1,6 @@
 import React from 'react';
 import Mypageitem from '../elements/mypageitem';
-import Topimg from '../elements/topimg';
+import Topimg from '../components/topimg/topimg';
 import style from '../css/mypage.module.css';
 
 const Mypage = () => {
