@@ -2,7 +2,7 @@ import './App.css';
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Main from './routes/main';
+import Main from './components/main/main';
 import Aside from './components/aside/aside';
 import About from './components/about/about';
 import Itemmain from './components/itemmain/itemmain';
