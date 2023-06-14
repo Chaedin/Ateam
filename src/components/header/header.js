@@ -11,7 +11,7 @@ const Header = () => {
         <header id={style.header}>
             <div className={style.main_logo}>
                 <Link to='/'>
-                    <img className={style.main_logo_img} src={require('../../image/team_logo.png')} alt="" />
+                    <img className={style.loge_image}src={require('../../image/team_logo.png')} alt="" />
                 </Link>
             </div>
             <ul className={style.nav_menu}>

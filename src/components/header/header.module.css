@@ -8,7 +8,7 @@
 }
 
 
-.main_logo_img {
+.logo_img {
   min-width: 3.125rem;
 }
 
@@ -38,7 +38,6 @@
   transform: scale(1.2);
 }
 
-.nav_search {}
 
 .search_bar {
   width: 7.5rem;
@@ -62,7 +61,7 @@
 }
 
 /* responsive nav */
-.navbar__toggle-btn {
+.navbar__toggle_btn {
   position: absolute;
   top: 24px;
   right: 32px;

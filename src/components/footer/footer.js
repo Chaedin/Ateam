@@ -16,14 +16,14 @@ const Footer = () => {
                     <h3>Banking Info</h3>
                     <p>국민 111111-11-111111</p>
                     <p>신한 11-11111-111</p>
-                    <p>예금주: 연아람</p>
+                    <p>예금주: 백채린</p>
                 </div>
             </div>
             <div className={style.footer_information}>
                 <h3>Shop Information</h3>
                 <p>AM 10:00 - PM 6:00, 주말 및 공휴일은 휴무입니다</p>
                 <p>
-                    상호 ateam, 대표 연아람<br />
+                    상호 ateam, 대표 백채린<br />
                     캘리포니아 쿠퍼티노<br />
                     사업자 등록 번호 111-11-11111<br />
                     통신판매업번호 2023-몰루-0001호<br />

@@ -25,12 +25,12 @@ export default function ProductsList() {
                 <h2>{product.name}</h2>
                 <p>{product.discription}</p>
               </div>
+              </div>
+            </a>
               <div className={style.discription_item}>
               <div className={style.discription_item_name}>{product.name}</div>
               <div className={style.discription_item_price}>{product.price}</div>
-            </div>
-            </div>
-            </a>
+            </div>      
           </li>
         ))}
       </ul>
