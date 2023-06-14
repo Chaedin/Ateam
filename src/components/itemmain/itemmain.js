@@ -1,10 +1,10 @@
 import { React, useState } from 'react';
-import Itemmainbutton from '../itemmain/itemmainbutton';
-import buttondata from '../itemmain/buttondata';
 import Topimg from '../topimg/topimg';
 import style from '../itemmain/itemmain.module.css';
+import Category from '../items/categoryList';
 import ItemSlide from '../items/productSlide'
 import Items from '../items/productList'
+
 
 const Itemmain = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -30,22 +30,12 @@ const Itemmain = () => {
 
             <div className={style.bottom_big_container}>
                 <div className={style.menubox_container}>
-                    <div className={style.menu__btn__container}>
-                        {buttondata.map((button, index) => (
-                            <Itemmainbutton
-                                key={index}
-                                name={button.name}
-                                count={button.count}
-                                data_category={button.data_category}
-                                className={`${style.menu_button} ${selectedCategory === button.data_category ? 'selected' : ''}`}
-                                onClick={itembtnclick}
-                            />
-                        ))}
-                    </div>
+                    <Category/>
+                </div>
                 </div>
                 <div className={style.menubox_horizon}></div>
              <Items/>
-            </div>
+ 
         </>
     );
 };
