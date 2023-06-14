@@ -82,92 +82,31 @@
     width: 300px;
 }
 
-th {
+.order_info th {
     height: 40px;
-    border-color: #616161;
+    border: 1px solid #616161;
     color: var(--color-white);
 }
 
-/* ############# */
+
 .delivery span {
     text-decoration: underline;
     color: var(--clolor-light-grey);
     cursor: pointer;
 }
 
-/* ############# */
+
 .order_info {
     background-color: black;
     border: 1px solid #616161;
 }
 
-/* ############ */
+
 .order_main img {
     background-position: center;
     background-size: cover;
     width: 150px;
     height: 100px;
-}
-
-
-/* responsive web */
-
-@media screen and (max-width: 768px) {
-    :root {
-        /* font-size */
-        --font-large: 1.875rem;
-        --font-mdeium: 1.125rem;
-        --font-regular: 1rem;
-        --font-small: 0.875rem;
-        --font-micro: 0.75rem;
-    }
-
-    .navbar__toggle-btn {
-        display: block;
-    }
-
-    .nav_menu {
-        flex-direction: column;
-        position: absolute;
-        width: 100%;
-        background-color: var(--color-white);
-        opacity: 0.9;
-        top: 95px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding-bottom: 5px;
-    }
-
-    .nav_search {
-        display: none;
-    }
-
-
-}
-
-.modalsize {
-    width: 450px;
-    height: 500px;
-    z-index: 999;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 8px;
-}
-
-.inputcoupon {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-}
-
-.close {
-    position: absolute;
-    right: 10px;
-    top: 10px;
 }
 
 /* mypage 페이지 css  (end) */

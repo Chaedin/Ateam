@@ -1,6 +1,6 @@
 import React from 'react';
 // import { MainpageItem1, MainpageItem2 } from '../elements/mainpageitem';
-import Products from '../main/productList'
+import Products from '../items/productList'
 import Topimg from '../topimg/topimg';
 import style from '../main/main.module.css';
 

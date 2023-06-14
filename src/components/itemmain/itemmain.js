@@ -1,12 +1,12 @@
 import { React, useState } from 'react';
-import { MainpageItem1, MainpageItem2, MainpageItem3 } from '../itemmain/mainpageitem';
 import Itemmainbutton from '../itemmain/itemmainbutton';
 import buttondata from '../itemmain/buttondata';
 import Topimg from '../topimg/topimg';
 import style from '../itemmain/itemmain.module.css';
+import ItemSlide from '../items/productSlide'
+import Items from '../items/productList'
 
 const Itemmain = () => {
-    const items = [MainpageItem1, MainpageItem2, MainpageItem3, MainpageItem1, MainpageItem2, MainpageItem3, MainpageItem1, MainpageItem2, MainpageItem3];
     const [selectedCategory, setSelectedCategory] = useState(null);
 
     const itembtnclick = (event) => {
@@ -23,13 +23,7 @@ const Itemmain = () => {
                     <div className={`${style.middle_left_box_child2} ${style.middle_slide_up2}`}>"sale for this season"</div>
                 </div>
                 <div className={style.slide_box_container}>
-                    <ul className={style.slide_box}>
-                        {items.map((Item, index) => (
-                            <div className={style.slide_boximg} key={index}>
-                                <Item />
-                            </div>
-                        ))}
-                    </ul>
+                    <ItemSlide/>
                 </div>
             </div>
             <div className={style.slide_horizon}></div>
@@ -50,23 +44,7 @@ const Itemmain = () => {
                     </div>
                 </div>
                 <div className={style.menubox_horizon}></div>
-                <ul className={style.bottom_list_big_container}>
-                    {items.map((Item, index) => {
-                        const itemCategory = buttondata[index % buttondata.length].data_category;
-                        const isVisible = selectedCategory === null || selectedCategory === itemCategory;
-                        const itemClasses = `${style.bottom_list_small_container} ${isVisible ? '' : 'item__invisible'}`;
-
-                        return (
-                            <div
-                                key={index}
-                                className={itemClasses}
-                                data-category={itemCategory}
-                            >
-                                <Item />
-                            </div>
-                        );
-                    })}
-                </ul>
+             <Items/>
             </div>
         </>
     );
