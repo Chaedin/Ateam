@@ -8,11 +8,8 @@
 }
 
 
-/* ***************min-width 안먹는거 추후해결******************* */
-.main_logo img {
-  /* min-width: 3.125rem; */
-  width: 100px;
-  height: 100px;
+.main_logo_img {
+  min-width: 3.125rem;
 }
 
 
