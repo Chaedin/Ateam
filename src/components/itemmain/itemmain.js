@@ -3,7 +3,7 @@ import Topimg from '../topimg/topimg';
 import style from '../itemmain/itemmain.module.css';
 import Category from '../items/categoryList';
 import ItemSlide from '../items/productSlide'
-import Items from '../items/productList'
+import Items from '../items/productsItems'
 
 
 const Itemmain = () => {
@@ -34,8 +34,7 @@ const Itemmain = () => {
                 </div>
                 </div>
                 <div className={style.menubox_horizon}></div>
-             <Items/>
- 
+            <Items/>
         </>
     );
 };

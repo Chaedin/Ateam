@@ -163,24 +163,11 @@
 }
 
 .menu__btn__container .menu_button {
-    /* background-color: var(--color-blue); */
     color: var(--color-black);
-    /* background-color: var(--color-black); */
-    /* width: 11rem; */
-    /* line-height: 2rem; */
     border-radius: var(--regular-border-radius);
     font-size: calc(var(--font-regular) * 1.1);
-    /* ? */
-    /* margin: 10rem .2rem 3rem .2rem; */
-
-
-    /* color: var(--color-white); */
 }
 
-/* 
-.menu_button{
-    padding: 5rem 0;
-} */
 
 .menubox_horizon {
     width: 70%;
@@ -192,7 +179,7 @@
 
 .bottom_list_big_container {
     display: flex;
-    padding: 5rem 10rem;
+    padding: 0 10rem 5rem 10rem;
     justify-content: center;
     flex-wrap: wrap;
 }
