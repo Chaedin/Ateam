@@ -18,7 +18,7 @@ const Header = () => {
         <li className={style.nav_menu_item}><Link to="/">HOME</Link></li>
         <li className={style.nav_menu_item}><Link to="/about">ABOUT</Link></li>
         <li className={style.nav_menu_item}><Link to="/itemmain">PRODUCT</Link></li>
-        <li className={style.nav_menu_item}><Link to="/mypage">MyPage</Link></li>
+        <li className={style.nav_menu_item}><Link to="/mypage">MYPAGE</Link></li>
         <li className={style.nav_menu_item}><Link to="/cspage">C/S</Link></li>
       </ul>
       <div className={style.nav_search}>

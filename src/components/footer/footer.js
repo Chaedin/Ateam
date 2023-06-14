@@ -12,7 +12,7 @@ const Footer = () => {
                     <a href="#">Agreement</a>
                     <a href="#">Privacy Policy</a>
                 </div>
-                <div>
+                <div className={style.ptag}>
                     <h3>Banking Info</h3>
                     <p>국민 111111-11-111111</p>
                     <p>신한 11-11111-111</p>
