@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Topimg from '../topimg/topimg';
 import { Link } from 'react-router-dom';
 import style from '../login/login.module.css';
-import NaverLogin from './naverLogin';
+// import NaverLogin from './NaverLogin';
 
 
 const Login = () => {
@@ -128,7 +128,7 @@ const Login = () => {
 
                         <div>
                             {/* <img src={require('../../image/컬러네이버.png')} alt="네이버" /> */}
-                            <NaverLogin/>
+                            {/* <NaverLogin/> */}
                             <img src={require('../../image/컬러카카오.png')} alt="카카오" />
                             <img src={require('../../image/컬러구글.png')} alt="구글" />
                         </div>
