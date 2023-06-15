@@ -72,7 +72,7 @@
 
 .mypageTd,
 .mypageTr {
-    border: 1px solid #616161;
+    border: 1px solid var(--clolor-light-grey);
     width: 200px;
     height: 150px;
 }
@@ -84,7 +84,7 @@
 
 .order_info th {
     height: 40px;
-    border: 1px solid #616161;
+    border: 1px solid var(--clolor-light-grey);
     color: var(--color-white);
 }
 
@@ -97,8 +97,8 @@
 
 
 .order_info {
-    background-color: black;
-    border: 1px solid #616161;
+    background-color: var(--color-black);
+    border: 1px solid var(--clolor-light-grey);
 }
 
 
