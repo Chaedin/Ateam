@@ -18,7 +18,7 @@ export default function CategoryList({ selected, onFilterChage }) {
         <div className={style.menu__btn__container}>
             {category.map((list) => (
                 <button key={list.tag_no} className={`${style.menu_button} ${selected === list && style.selected}`} onClick={() => onFilterChage(list)}>
-                    <span >{list.name}</span>
+                    <span className={style.menu_button_span}>{list.name}</span>
                 </button>
             ))}
         </div>
