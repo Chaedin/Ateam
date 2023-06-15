@@ -6,6 +6,14 @@ import { Link } from 'react-router-dom';
 import style from '../aside/aside.module.css';
 
 const Aside = () => {
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top : 0,
+            behavior : 'smooth'
+        })
+    }
+
     return (
         <aside id={style.aside}>
             <ul>
@@ -34,7 +42,7 @@ const Aside = () => {
                     </button>
                 </li>
                 <li>
-                    <button className={`${style.aside_btn} ${style.up}`}>
+                    <button onClick={scrollToTop} className={`${style.aside_btn} ${style.up}`}>
                         <span>Top</span>
                     </button>
                 </li>
