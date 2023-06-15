@@ -25,7 +25,7 @@
 .middle_slide_up1 {
     opacity: 0;
     transform: translateY(5px);
-    animation: middle_slide_up1 1s ease-out 1s forwards;
+    animation: middle_slide_up1 .5s ease-out .5s forwards;
 }
 
 @keyframes middle_slide_up1 {
@@ -50,7 +50,7 @@
 .middle_slide_up2 {
     opacity: 0;
     transform: translateY(5px);
-    animation: middle_slide_up2 2s ease-out 2s forwards;
+    animation: middle_slide_up2 1s ease-out 1s forwards;
 }
 
 @keyframes middle_slide_up2 {
