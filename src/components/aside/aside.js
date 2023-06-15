@@ -6,23 +6,15 @@ import { Link } from 'react-router-dom';
 import style from '../aside/aside.module.css';
 
 const Aside = () => {
-
-    const scrollToTop = () => {
-        window.scrollTo({
-            top : 0,
-            behavior : 'smooth'
-        })
-    }
-        
     return (
         <aside id={style.aside}>
             <ul>
                 <li>
                     <div className={style.bubble}>장바구니</div>
                     <button className={style.aside_btn}>
-                        <a href="./subPage/cart/cart.html">
+                        <Link to='/cart'>
                             <FontAwesomeIcon icon={faBasketShopping} />
-                        </a>
+                        </Link>
                     </button>
                 </li>
                 <li>
@@ -42,7 +34,7 @@ const Aside = () => {
                     </button>
                 </li>
                 <li>
-                    <button className={`${style.aside_btn} ${style.up}`} onClick={scrollToTop}>
+                    <button className={`${style.aside_btn} ${style.up}`}>
                         <span>Top</span>
                     </button>
                 </li>
