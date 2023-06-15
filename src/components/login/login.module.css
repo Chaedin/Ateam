@@ -28,27 +28,7 @@ input {
     border-bottom: 2px solid;
 }
 
-/* 회원 비회원버튼 */
-.members {
-    display: flex;
-}
 
-.members button {
-    width: 150px;
-    height: 50px;
-    background-color: black;
-    opacity: .5;
-    color: var(--color-white);
-}
-
-.members .visible {
-    opacity: 1;
-}
-
-/* 멤버박스 */
-.member_box {
-    display: none;
-}
 
 /* id칸 */
 .login_id {
@@ -57,12 +37,12 @@ input {
     margin-top: 50px;
 }
 
-.member_id,
-.non_member_id {
+.member_id {
     width: 300px;
     height: 35px;
     border: none;
     border-bottom: 1.5px solid #000000;
+    text-align: left;
 }
 
 /* psw칸 */
@@ -72,42 +52,13 @@ input {
     margin-top: 20px;
 }
 
-.member_pw,
-.non_member_pw {
+.member_pw {
     width: 300px;
     height: 35px;
     border: none;
     border-bottom: 1.5px solid #000000;
+    text-align: left;
 }
-
-/* 비회원박스 */
-
-.non_member_box {
-    display: none;
-}
-
-/* 비회원 id칸 */
-.non_member_login_id {
-    width: 300px;
-    height: 50px;
-    margin-top: 50px;
-
-}
-
-/* 비회원 psw칸 */
-.non_member_login_pw {
-    width: 300px;
-    height: 50px;
-    margin-top: 20px;
-}
-
-/* 회원 비회원 show */
-.show {
-    display: block;
-}
-
-
-/*  */
 
 
 /* 로그인엔터 */
@@ -116,11 +67,11 @@ input {
     height: 45px;
     margin: 0 auto;
     border-radius: 3px;
-    background-color: black;
+    background-color: var(--color-black);
     font-size: 17px;
     line-height: 45px;
     text-align: center;
-    color: white;
+    color: var(--color-white);
 }
 
 .login_enter>a {
@@ -139,16 +90,16 @@ input {
 .find {
     float: left;
     margin-top: 15px;
-    font-size: 14px;
-    color: #000000;
+    font-size: var(--font-small);
+    color: var(--color-black);
 }
 
 /* 회원가입 */
 .join {
     float: right;
     margin-top: 15px;
-    font-size: 14px;
-    color: #000000;
+    font-size: var(--font-small);
+    color: var(--color-black);
 }
 
 /* 다른로그인 이미지 */
@@ -156,7 +107,6 @@ input {
     width: 35px;
     margin: 40px 5px;
 }
-
 
 
 /* login 페이지 css (end) */

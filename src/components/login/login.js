@@ -42,10 +42,6 @@ const Login = () => {
                 <div className={style.main_container}>
                     <div className={style.login_container}>
                         <h1 className={style.login}>Login</h1>
-                        <div className={style.members}>
-                            <button className={style.visible}>회원 로그인</button>
-                            <button>비회원 로그인</button>
-                        </div>
                         <form onSubmit={handleSubmit}>
                             <div className={`${style.box} ${style.member_box}${style.show}`}>
                                 <div className={style.login_id}>
@@ -70,37 +66,6 @@ const Login = () => {
                                         placeholder="PASSWORD"
                                         value={password}
                                         onChange={handlePasswordChange}
-                                        required
-                                    />
-                                    <p className={style.warning_pw} style={{ display: 'none', color: 'red', fontSize: 'smaller' }}>
-                                        비밀번호가 입력되지 않았습니다.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className={`${style.box} ${style.non_member_box}`}>
-                                <div className={style.non_member_login_id}>
-                                    <input
-                                        type="text"
-                                        className={style.non_member_id}
-                                        name="id_nonmember"
-                                        placeholder="PHONE NUMBER (-빼고 입력하세요.)"
-                                        value={nonMemberId}
-                                        onChange={handleNonMemberIdChange}
-                                        required
-                                    />
-                                    <p className={style.warning_id} style={{ display: 'none', color: 'red', fontSize: 'smaller' }}>
-                                        비회원 정보가 올바르지 않습니다.
-                                    </p>
-                                </div>
-                                <div className={style.non_member_login_pw}>
-                                    <input
-                                        type="password"
-                                        className={style.non_member_pw}
-                                        name="pw_nonmember"
-                                        placeholder="임시 비밀번호 4자리 "
-                                        value={nonMemberPassword}
-                                        onChange={handleNonMemberPasswordChange}
                                         required
                                     />
                                     <p className={style.warning_pw} style={{ display: 'none', color: 'red', fontSize: 'smaller' }}>
