@@ -2,7 +2,7 @@
 
 section .main {
     margin: 100px;
-    text-align: center; 
+    text-align: center;
 }
 
 .join_us {
@@ -13,7 +13,7 @@ section .main {
 }
 
 .main form {
-    margin:auto;
+    margin: auto;
     padding: 30px;
     width: 1000px;
 }
@@ -34,20 +34,21 @@ section .main {
 }
 
 tr .joinusInputTd {
-  display: flex;
+    display: flex;
 }
 
 .birth select {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .email {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
-.userPhone input{
-  width:50px ;
+.userPhone input {
+    width: 50px;
 }
+
 section .main div {
     margin: 15px 0;
 }
@@ -58,11 +59,12 @@ section .main div {
 
 
 .userId button {
-    font-size: 15px;
+    /* font-size: 15px; */
+    font-size: var(--font-small);
     width: 80px;
     line-height: 25px;
     margin-left: 10px;
-    background-color: rgb(197, 197, 197);
+    background-color: var(--color-grey);
     border-radius: 10%;
     color: var(--color-white);
 
@@ -74,7 +76,7 @@ section .main p {
 
 .terms a {
     text-decoration: underline;
-    color: gray;
+    color: var(--color-dark-white);
 }
 
 .under_terms {
@@ -86,13 +88,15 @@ section .main p {
     width: 200px;
     height: 45px;
     border-radius: 3px;
-    background-color: black;
+    background-color: var(--color-black);
     border: none;
-    font-size: 17px;
+    font-size: var(--font-regular);
+
 }
 
 .injoy_btn>a {
     color: var(--color-white);
+    text-decoration: none;
 }
 
 /* joinus 페이지 css (end) */
