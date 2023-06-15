@@ -64,16 +64,18 @@ const Cspage = () => {
         <Cspagebutton dataCategory="userService" buttonName="회원서비스" handleCategorySelect={handleCategorySelect} />
       </div>
 
-      <Accordion>
-        {filteredItems.map((item, index) => (
-          <AccordionItem
-            key={index}
-            eventKey={String(index)}
-            accordionhead={item.accordionhead}
-            accordionbody={item.accordionbody}
-          />
-        ))}
-      </Accordion>
+      <div className={style.accordionBox}>
+        <Accordion>
+          {filteredItems.map((item, index) => (
+            <AccordionItem
+              key={index}
+              eventKey={String(index)}
+              accordionhead={item.accordionhead}
+              accordionbody={item.accordionbody}
+            />
+          ))}
+        </Accordion>
+      </div>
     </main>
   );
 };
