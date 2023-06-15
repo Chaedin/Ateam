@@ -7,34 +7,31 @@ import Items from '../items/productsItems'
 
 
 const Itemmain = () => {
-    const [selectedCategory, setSelectedCategory] = useState(null);
-
-    const itembtnclick = (event) => {
-        const datafilter = event.target.dataset.data_category;
-        setSelectedCategory(datafilter);
-    };
+    const [selectedCategory, setSelectedCategory] = useState();
 
     return (
         <>
-            <Topimg/>
+            <Topimg />
             <div className={style.middle_big_container}>
                 <div className={style.middle_big_container_textbox}>
                     <div className={`${style.middle_left_box_child1} ${style.middle_slide_up1}`}>BEST ITEMS</div>
                     <div className={`${style.middle_left_box_child2} ${style.middle_slide_up2}`}>"sale for this season"</div>
                 </div>
                 <div className={style.slide_box_container}>
-                    <ItemSlide/>
+                    <ItemSlide />
                 </div>
             </div>
             <div className={style.slide_horizon}></div>
 
             <div className={style.bottom_big_container}>
                 <div className={style.menubox_container}>
-                    <Category/>
+                    <Category selected={selectedCategory}
+                        onFilterChage={(selectedCategory) => setSelectedCategory(selectedCategory)} />
                 </div>
-                </div>
-                <div className={style.menubox_horizon}></div>
-            <Items/>
+            </div>
+            <div className={style.menubox_horizon}></div>
+            <Items selected={selectedCategory} />
+
         </>
     );
 };
