@@ -68,11 +68,10 @@ code {
   padding: 0;
   text-align: center;
   font-family: 'Roboto', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 body {
-  font-family: 'Open sans', sans-serif;
-  font-family: 'Noto Sans KR', sans-serif;
   text-align: center;
 }
 
