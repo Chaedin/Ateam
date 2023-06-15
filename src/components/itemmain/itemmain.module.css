@@ -165,7 +165,6 @@
 .menu__btn__container .menu_button {
 
     color: var(--color-black);
- 
     border-radius: var(--regular-border-radius);
 
 }
@@ -238,7 +237,7 @@
 
 .menu_button:hover::after,
 .menu_button.selected::after {
-  opacity: 1;
+    opacity: 1;
 }
 
 .bottom_list_big_container {
