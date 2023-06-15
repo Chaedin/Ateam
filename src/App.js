@@ -10,6 +10,7 @@ import Mypage from './components/mypage/mypage';
 import Cspage from './components/cspage/cspage';
 import Login from './components/login/login';
 import Joinus from './components/joinus/joinus';
+import Cart from './components/cart/cart';
 function App() {
   return (
     <>
@@ -23,7 +24,8 @@ function App() {
       <Route path='/cspage' element={<Cspage/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/joinus' element={<Joinus/>}/>
-      <Route path='/terms' element={<Terms/>}/>
+      <Route path='/cart' element={<Cart/>}/>
+      {/* <Route path='/terms' element={<Terms/>}/> */}
     </Routes>
     <Aside />
     <Footer />

@@ -12,9 +12,9 @@ const Aside = () => {
                 <li>
                     <div className={style.bubble}>장바구니</div>
                     <button className={style.aside_btn}>
-                        <a href="./subPage/cart/cart.html">
+                        <Link to='/cart'>
                             <FontAwesomeIcon icon={faBasketShopping} />
-                        </a>
+                        </Link>
                     </button>
                 </li>
                 <li>
