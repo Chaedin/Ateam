@@ -119,9 +119,9 @@ const Joinus = () => {
 
                     <p className={style.terms}>
                         <input type="checkbox" required />
-                        <a href="../terms/terms.html" target="_blank" rel="noopener noreferrer">
+                        <Link to='/terms' target='_blank' >
                             개인정보 처리방침
-                        </a>
+                        </Link>
                         에 따라 개인 정보를 수집, 사용, 타사에 대한 제공 및 처리하는 데 동의합니다.
                     </p>
 

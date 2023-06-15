@@ -10,6 +10,8 @@ import Mypage from './components/mypage/mypage';
 import Cspage from './components/cspage/cspage';
 import Login from './components/login/login';
 import Joinus from './components/joinus/joinus';
+import Terms from './components/terms/terms';
+
 function App() {
   return (
     <>
