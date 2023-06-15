@@ -8,7 +8,7 @@
 
 .about__container {
     opacity: 0;
-    transition: all 1500ms ease-in;
+    transition: all 500ms ease-in;
 }
 
 .p__story {
