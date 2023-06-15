@@ -23,6 +23,7 @@ function App() {
       <Route path='/cspage' element={<Cspage/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/joinus' element={<Joinus/>}/>
+      <Route path='/terms' element={<Terms/>}/>
     </Routes>
     <Aside />
     <Footer />
