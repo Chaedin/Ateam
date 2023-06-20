@@ -2,6 +2,8 @@ import React from 'react';
 import Mypageitem from '../mypage/mypageitem';
 import Topimg from '../topimg/topimg';
 import style from '../mypage/mypage.module.css';
+import Profile from '../mypage/myProfile';
+
 
 const Mypage = () => {
 
@@ -12,18 +14,7 @@ const Mypage = () => {
             <section>
                 <div className={style.myPage_container}>
                     <h1 className={style.myPageText}>My Page</h1>
-                    <div className={style.profile}>
-                        <div className={style.profile_img}></div>
-                        <ul className={style.member_info}>
-                            <li>백채린 님</li>
-                            <li className={style.layoutCoupon}>
-                                보유 포인트 :{' '}
-                            </li>
-                            <li>
-                                <span>회원 정보 수정</span>
-                            </li>
-                        </ul>
-                    </div>
+                    <Profile/>
                     <hr />
                     <div className={style.order_check_all}>
                         <div className={style.order}>
