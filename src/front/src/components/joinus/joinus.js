@@ -2,10 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from '../joinus/joinus.module.css';
 import Modal from 'react-modal';
+import Topimg from "../topimg/topimg";
 
 
 const Joinus = () => {
     return (
+        <>
+        <Topimg/>
         <section className={style.main}>
             <h1 className={style.join_us}>Join Us</h1>
 
@@ -133,6 +136,7 @@ const Joinus = () => {
                 </div>
             </form>
         </section>
+        </>
     );
 }
 
