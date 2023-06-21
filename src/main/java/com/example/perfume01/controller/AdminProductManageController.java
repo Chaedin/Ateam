@@ -29,14 +29,9 @@ import java.util.List;
 public class AdminProductManageController {
 
     ProductDAO dao;
-
     ProductService service;
-
     ProductTagDAOImpl tagDao;
-
     ProductTagService tagService;
-
-
 
     @GetMapping("/productList")
     public String productList(Model model) {
@@ -133,10 +128,8 @@ public class AdminProductManageController {
         }
         productDTO.setProduct_subimg(file4);
 
-
         service.insertProduct(productDTO);
         tagService.insertTag(productDTO);
-
 
         // View 처리
         return "redirect:list";

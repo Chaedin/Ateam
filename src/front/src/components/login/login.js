@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import Topimg from '../topimg/topimg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import style from '../login/login.module.css';
 // import NaverLogin from './NaverLogin';
-
+import axios from "axios";
 
 const Login = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
-    const [nonMemberId, setNonMemberId] = useState('');
-    const [nonMemberPassword, setNonMemberPassword] = useState('');
-
+    const navigate = useNavigate();
     const handleIdChange = (e) => {
         setId(e.target.value);
     };
@@ -19,17 +17,22 @@ const Login = () => {
         setPassword(e.target.value);
     };
 
-    const handleNonMemberIdChange = (e) => {
-        setNonMemberId(e.target.value);
-    };
-
-    const handleNonMemberPasswordChange = (e) => {
-        setNonMemberPassword(e.target.value);
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         // Add your login logic here
+        const data = {
+            member_id: id,
+            member_pw: password,
+        };
+        axios.post('http://localhost:8080/member/login', data)
+            .then((response)=>{
+                console.log(response.data);
+                navigate('/');
+            })
+            .catch((error)=>{
+                console.error(error);
+                alert('로그인시 에러가 발생하였습니다.')
+            })
     };
 
 

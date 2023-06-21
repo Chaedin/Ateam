@@ -46,7 +46,7 @@ tr .joinusInputTd {
 }
 
 .userPhone input {
-    width: 50px;
+    width: 220px;
 }
 
 section .main div {
@@ -91,7 +91,7 @@ section .main p {
     background-color: var(--color-black);
     border: none;
     font-size: var(--font-regular);
-
+    color: white;
 }
 
 .injoy_btn>a {

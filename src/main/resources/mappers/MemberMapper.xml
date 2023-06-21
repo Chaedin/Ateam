@@ -15,7 +15,7 @@
     <!-- 회원가입용 insert 절 -->
     <insert id="minsert">
         INSERT INTO member
-        VALUES (#{member_id}, #{member_name}, #{member_nick}, #{member_pw}, #{member_phone}, #{member_email}, #{member_post}, #{member_basic_addr}, #{member_detail_addr})
+        VALUES (#{member_id}, #{member_name}, #{member_nick}, #{member_pw}, #{member_phone}, #{member_email}, #{member_post}, #{member_basic_addr}, #{member_detail_addr}, now(), '일반회원', 1000)
     </insert>
 
     <!-- 회원 정보 수정 UPDATE -->

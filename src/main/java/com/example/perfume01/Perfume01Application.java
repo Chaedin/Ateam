@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
+//@SpringBootApplication
 @MapperScan(value = {"mapperInterface"})
 public class Perfume01Application {
 
