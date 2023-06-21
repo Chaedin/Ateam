@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Mypageitem from '../mypage/mypageitem';
 import Topimg from '../topimg/topimg';
 import style from '../mypage/mypage.module.css';
 import Profile from '../mypage/myProfile';
+import axios from 'axios';
+
 
 
 const Mypage = () => {
+
+    const [myprofile, setMyprofile] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:8080/mypage/profile')
+            .then((response) => {
+                setMyprofile(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
 
     return (
         <>
