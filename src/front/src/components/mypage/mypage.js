@@ -13,7 +13,7 @@ const Mypage = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:8080/mypage/profile')
+            .get('http://localhost:8080/mypage/myinfo')
             .then((response) => {
                 setMyprofile(response.data);
             })
