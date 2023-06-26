@@ -6,12 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data @AllArgsConstructor
 @Builder @NoArgsConstructor
 public class OrdersDTO {
     // 주문 번호
     private int order_no;
+
+    int product_id;
+    int product_count;
 
     // 사용자로부터 입력을 받거나 DB로 입력 받을 값
     private String order_receiver;

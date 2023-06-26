@@ -15,6 +15,7 @@ public class CartProductInfoServiceImpl implements CartProductInfoService {
 
     @Override
     public List<CartProductInfoDTO> cartInfoList(String member_id) {
-        return dao.cartInfoList(member_id);
+        //return dao.cartInfoList(member_id);
+        return null;
     }
 }

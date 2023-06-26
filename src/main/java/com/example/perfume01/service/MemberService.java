@@ -11,6 +11,12 @@ public interface MemberService {
 
     MemberVO selectOne(MemberVO vo);
 
+    MemberVO selectUser(String loginID);
+
+    MemberVO myinfo(String member_id);
+
+    int changeInfo(MemberVO vo);
+
     int minsert(MemberVO vo);
 
     int mupdate(MemberVO vo);

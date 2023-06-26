@@ -77,41 +77,6 @@
 
 
 
-    <!-- 수정전 코드 -->
-    <!--
-    <sql id="search">
-        <if test="keyword != null">
-            <bind name="keyVal" value="'%' + keyword + '%'"/>
-        </if>
-
-        <choose>
-            <when test="searchType != null and searchType != 'all'">
-                AND ${searchType} LIKE #{keyVal}
-            </when>
-            <otherwise></otherwise>
-        </choose>
-    </sql>
-
-    <select id="searchList" resultType="com.example.perfume01.dto.ProductDTO">
-        SELECT *
-        FROM product
-        <where>
-            <include refid="search"></include>
-        </where>
-        ORDER BY product_no ASC
-        LIMIT #{sno}, #{rowsPerPage}
-    </select>
-
-    <select id="searchTotalCount" resultType="int">
-        SELECT COUNT(*)
-        FROM product
-        <where>
-            <include refid="search"></include>
-        </where>
-    </select>
-    -->
-
-
     <!-- 수정 후 코드 -->
     <sql id="search">
         <if test="keyword != null">

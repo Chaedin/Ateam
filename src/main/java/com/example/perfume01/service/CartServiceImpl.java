@@ -15,7 +15,7 @@ public class CartServiceImpl implements CartService {
     @Autowired
     CartDAO dao;
 
-    CartProductInfoDAO infoDAO;
+    //CartProductInfoDAO infoDAO;
 
 
     @Override
@@ -29,13 +29,14 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<CartDTO> cartList() {
-        return dao.cartList();
+    public List<CartDTO> cartList(String member_id) {
+        return dao.cartList(member_id);
     }
+
 
     @Override
     public int cartChangeCount(int product_count, int product_no, String member_id) {
-        CartDTO dto = new CartDTO(product_count, product_no, member_id);
+        CartDTO dto = new CartDTO();
         dto.setProduct_count(product_count);
         dto.setProduct_no(product_no);
         dto.setMember_id(member_id);
@@ -62,13 +63,6 @@ public class CartServiceImpl implements CartService {
     @Override
     public int cartCnt(String member_id) {
         return dao.cartCnt(member_id);
-    }
-
-    @Override
-    public List<CartProductInfoDTO> cartInfoList(String member_id) {
-
-
-        return infoDAO.cartInfoList(member_id);
     }
 
 

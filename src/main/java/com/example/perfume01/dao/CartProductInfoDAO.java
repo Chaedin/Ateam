@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface CartProductInfoDAO {
 
-    List<CartProductInfoDTO> cartInfoList(String member_id);
+//    List<CartProductInfoDTO> cartInfoList(String member_id);
 
 }

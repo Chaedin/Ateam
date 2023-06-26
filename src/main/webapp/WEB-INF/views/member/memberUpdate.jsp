@@ -28,14 +28,6 @@
     <div class="container-600">
         <div class="row center">
             <h2>회원 정보 변경</h2>
-            <c:if test="${empty requestScope.mlist}">
-                mlist에서 데이터를 받아오지 못하고 있습니다.
-            </c:if>
-            <c:if test="${not empty requestScope.mlist}">
-                mlist에서 데이터를 받아오고 있습니다.
-                <p>받아오고 있는 멤버 아이디 : ${requestScope.mlist.member_id}</p>
-                <p>mlist 다 출력 : ${requestScope.mlist}</p>
-            </c:if>
         </div>
         <div class="row">
             <label>닉네임</label>
@@ -102,12 +94,10 @@
             <input type="submit" id="saveBtn" class="form-btn positive medium" value="변경">
         </div>
         <script>
-
             $("#saveBtn").on("click", function(){
                 checkUnload = false;
                 $("#saveForm").submit();
             });
-
         </script>
     </div>
 </form>

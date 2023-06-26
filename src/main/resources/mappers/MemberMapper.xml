@@ -12,6 +12,16 @@
         SELECT * FROM member WHERE member_id=#{member_id}
     </select>
 
+    <select id="selectUser" resultType="com.example.perfume01.vo.MemberVO">
+        SELECT * FROM member WHERE member_id=#{loginID}
+    </select>
+
+    <!-- 내정보 보기 -->
+    <select id="myinfo" resultType="com.example.perfume01.vo.MemberVO">
+        SELECT * FROM member WHERE member_id=#{member_id}
+    </select>
+
+
     <!-- 회원가입용 insert 절 -->
     <insert id="minsert">
         INSERT INTO member
@@ -74,6 +84,44 @@
             ) WHERE RN BETWEEN #{begin} AND #{end}
     </select>
     -->
+
+    <!-- 이메일로 아이디 찾기 -->
+    <select id="findId">
+        SELECT member_id FROM member
+        WHERE member_email=${member_email}
+    </select>
+
+    <!-- 아래 비밀번호 변경문들은 스프링 시큐리티 사용시 사용하기 힘듬-->
+
+    <!-- 아이디와 이메일로 비밀번호 찾기 -->
+    <select id="findPw">
+        SELECT member_pw FROM member
+        WHERE member_id=${member_id} AND member_email=${member_email}
+    </select>
+
+    <!-- 비밀번호 변경 -->
+    <update id="changePassword">
+        UPDATE member SET member_pw=${member_pw}
+        WHERE member_id=${member_id}
+    </update>
+
+    <!-- 비밀번호를 제외한 정보 변경 -->
+    <update id="changeInfo">
+        UPDATE member SET
+        <if test="member_pw != null">
+            member_pw=#{member_pw}
+        </if>
+        <if test="member_pw == null">
+            member_nick=#{member_nick}, member_phone=#{member_phone}, member_email=#{member_email}, member_post=#{member_post},
+            member_basic_addr=#{member_basic_addr}, member_detail_addr=#{member_detail_addr}, member_role='일반회원', member_point=#{member_point}
+        </if>
+        WHERE member_id=#{member_id}
+    </update>
+
+    <!-- 회원 탈퇴 -->
+    <delete id="delete">
+        DELETE member WHERE member_id=${member_id}
+    </delete>
 
 </mapper>
 <!-- Mybatis 사용시 인터페이스, 패키지, 클래스명 일치시킬것 -->

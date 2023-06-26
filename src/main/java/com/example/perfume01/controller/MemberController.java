@@ -4,12 +4,15 @@ package com.example.perfume01.controller;
         import com.example.perfume01.criteria.SearchCriteria;
         import com.example.perfume01.dao.MemberDAO;
         import com.example.perfume01.dto.ResponseDTO;
+        import com.example.perfume01.dto.UserDTO;
         import com.example.perfume01.service.MemberService;
         import com.example.perfume01.vo.MemberVO;
         import lombok.AllArgsConstructor;
         import lombok.NoArgsConstructor;
         import lombok.extern.log4j.Log4j2;
         import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.http.HttpStatus;
+        import org.springframework.http.ResponseEntity;
         import org.springframework.security.authentication.AuthenticationManager;
         import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
         import org.springframework.security.core.Authentication;
@@ -20,7 +23,9 @@ package com.example.perfume01.controller;
         import org.springframework.web.bind.annotation.*;
         import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+        import javax.servlet.http.Cookie;
         import javax.servlet.http.HttpServletRequest;
+        import javax.servlet.http.HttpServletResponse;
         import javax.servlet.http.HttpSession;
         import java.util.List;
         import java.util.Map;
@@ -45,6 +50,7 @@ public class MemberController {
 
     AuthenticationManager authenticationManager;
 
+    // 관리자페이지 로그인 테스트용 (더미)
     @PostMapping("/loginRest")
     public String login(HttpServletRequest request, Model model) {
         String pw = vo.getMember_pw();
@@ -74,6 +80,29 @@ public class MemberController {
     }
 
 
+    // ====== 여기부터 실제로 사용할 앤드 포인트 코드 ==========
+
+    @GetMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // 세션 무효화
+        }
+
+        // 클라이언트 측에서 쿠키 삭제
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("JSESSIONID")) {
+                    cookie.setMaxAge(0); // 쿠키 만료 시간을 0으로 설정하여 삭제
+                    response.addCookie(cookie);
+                    break;
+                }
+            }
+        }
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/memberListRest")
     public List<MemberVO> memberList(SearchCriteria criteria, PageMaker pageMaker) {
         //criteria.setSnoEno();
@@ -83,15 +112,10 @@ public class MemberController {
         }
 
         List<MemberVO> rtn;
-//        List<MemberVO> rtn2;
-
-        // 에러처리 해야됨
-//        rtn2 = service.selectList();
         rtn = service.searchList(criteria);
 
         return rtn;
     }
-
 
     @GetMapping("/memberDetailRest")
     public String memberDetail(HttpServletRequest request, Model model, MemberVO vo) {
@@ -112,12 +136,10 @@ public class MemberController {
     }
 
 
-
     @PostMapping("/memberUpdateRest")
     public String mupdate(HttpServletRequest request, Model model,MemberVO vo) throws Exception {
         model.addAttribute("mlist", vo);
         String uri = "/member/memberDetail";
-
         vo.setMember_pw(null);
 
         //회원 정보 업데이트
@@ -139,6 +161,13 @@ public class MemberController {
     }
 
     // ====== 검색 관련 컨트롤러 ======
+
+    // mypage 내정보 보기
+    @GetMapping("/myinfo")
+     public MemberVO myinfo(@RequestParam("member_id") String member_id) {
+        MemberVO rtn = service.myinfo(member_id);
+        return rtn;
+    }
 
 
     @GetMapping("/mdeleteRest")
@@ -163,24 +192,10 @@ public class MemberController {
     @PostMapping("/reg_user")
     public ResponseDTO regUser(MemberVO memberVO){
         ResponseDTO rtn = new ResponseDTO();
-
-        System.out.println("회원가입 테스트중 에러확인1");
-
-
         try {
             log.info(rtn);
-
-            System.out.println("회원가입 테스트중 에러확인2");
-
             memberVO.setMember_pw(passwordEncoder.encode(memberVO.getMember_pw()));
-
-            System.out.println("회원가입 테스트중 에러확인3");
-
-
             int result = service.minsert(memberVO);
-
-            System.out.println("회원가입 테스트중 에러확인4");
-
 
             if (result == 1) {
                 rtn.setErr_code(1);
@@ -199,24 +214,127 @@ public class MemberController {
 
     // 일반 로그인(암호화)
     @PostMapping("/login")
-    public String memberlogin(HttpSession session, @RequestBody MemberVO memberVO) {
+    public ResponseEntity<?> memberlogin(HttpServletRequest request, HttpServletResponse response, HttpSession session,
+                              @RequestBody MemberVO memberVO
+                             ) {
 
         String pw = memberVO.getMember_pw();
-        String uri = "/";
+//        String uri = "/";
 
         memberVO = service.selectOne(memberVO);
-        if (memberVO != null) {
-            if (passwordEncoder.matches(pw,memberVO.getMember_pw())) {
-                session.setAttribute("loginID", memberVO.getMember_id());
-                session.setAttribute("loginName",memberVO.getMember_name());
+        if (memberVO != null && passwordEncoder.matches(pw,memberVO.getMember_pw())) {
+                request.getSession().setAttribute("loginID", memberVO.getMember_id());
+                request.getSession().setAttribute("loginName", memberVO.getMember_name());
+//                session.setAttribute("loginID", memberVO.getMember_id());
+//                session.setAttribute("loginName",memberVO.getMember_name());
+                System.out.println("로그인에서 세션확인 : " + request.getSession().getAttribute("loginID"));
+
+                // 쿠키 설정 (사실 자동생성이어서 필요 없는 코드라고 판단됨)
+//                Cookie sessionCookie = new Cookie("JSESSIONID", request.getSession().getId());
+//                sessionCookie.setPath("/");
+//                response.addCookie(sessionCookie);
+
+                UserDTO dto = UserDTO.builder().
+                        loginID(memberVO.getMember_id()).
+                        loginName(memberVO.getMember_name()).
+                        build();
+                return ResponseEntity.ok().body(dto);
+
             } else {
-                uri = "member/login";
-            }
-        } else {
-            uri = "member/login";
-        }
-        return uri;
+//                uri = "member/login";
+                return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("로그인 오류");
+        } // if
     }
+
+    // 회원 정보 변경하기
+    @PostMapping("/changeInfo")
+    public ResponseEntity<?> changeInfo(@RequestBody MemberVO vo) {
+        try {
+            vo.setMember_pw(null);
+            System.out.println("에러확인1, 맴버 아이디 : " + vo);
+            int result = service.changeInfo(vo);
+            System.out.println("에러확인2");
+            if (result > 0) {
+                return ResponseEntity.status(HttpStatus.OK).body("수정성공");
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("수정실패1");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("수정실패2");
+        }
+    }
+    
+//    @PostMapping("/changeInfo")
+//    public String changeInfo(MemberVO vo) {
+//        vo.setMember_pw(null);
+//        service.changeInfo(vo);
+//
+//        return "정보변경완료";
+//    }
+
+
+    // 아이디 찾기
+    // 완성해야될것
+    @PostMapping("/findId")
+    public String findId() {
+        try {
+
+        } catch (Exception e) {
+
+        }
+        return "null";
+    }
+
+
+    @GetMapping("/selectLoginMemberId")
+    public String selectLoginMemberId(HttpServletRequest request, HttpSession session) {
+        session = request.getSession();
+        String memberId = (String) session.getAttribute("loginID");
+        System.out.println(memberId);
+        return memberId;
+    }
+
+
+    @GetMapping("/userinfo")
+    public MemberVO selectUser(@RequestParam String member_id) {
+        //String loginID = (String) session.getAttribute("loginID");
+        /*if (loginID != null) {
+            return service.selectUser(loginID);
+        }*/
+        return service.selectUser(member_id);
+    }
+
+
+    //스프링 시큐리티 로그인
+//    @PostMapping("/login")
+//    public String login(HttpSession session, @RequestBody MemberVO memberVO) {
+//        MemberVO dbMember = service.selectOne(memberVO);
+//        if (dbMember != null && passwordEncoder.matches(memberVO.getMember_pw(), dbMember.getMember_pw())) {
+//            Authentication authentication = new UsernamePasswordAuthenticationToken(dbMember, null, null);
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
+//            session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+//                    SecurityContextHolder.getContext());
+//
+//            // 사용자 정보 확인
+//            String userName = dbMember.getMember_name();
+//            String userId = dbMember.getMember_id();
+//            String userTel = dbMember.getMember_phone();
+//
+//            System.out.printf("유저 네임 : %s, 유저 아이디 : %s, 유저 연락처 : %s", userName, userId, userTel);
+//
+//            return "Login success";
+//        } else {
+//            return "Login faild";
+//        }
+//    }
+
+    @GetMapping("/result")
+    public String result(HttpSession session) {
+        String rtn = session.getId();
+        return rtn;
+    }
+
+
 
 }
 

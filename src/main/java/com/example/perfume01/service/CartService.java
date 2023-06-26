@@ -11,7 +11,7 @@ public interface CartService {
 
     CartDTO selectOne(CartDTO dto);
 
-    List<CartDTO> cartList();
+    List<CartDTO> cartList(String member_id);
 
 //    int cartChangeCount(CartDTO dto);
     int cartChangeCount(int product_count, int product_no, String member_id);
@@ -24,5 +24,5 @@ public interface CartService {
 
     int cartCnt(String member_id);
 
-    List<CartProductInfoDTO> cartInfoList(String member_id);
+    //List<CartProductInfoDTO> cartInfoList(String member_id);
 }

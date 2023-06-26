@@ -36,6 +36,7 @@ public class ProductController {
     public ProductDTO productDetail(ProductDTO dto) {
         int pno = dto.getProduct_no();
         ProductDTO pd = service.selectOne(dto);
+        System.out.println(pd);
         return pd;
     }
 

@@ -24,6 +24,22 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public MemberVO selectUser(String loginID) {
+        return dao.selectUser(loginID);
+    }
+
+    @Override
+    public MemberVO myinfo(String member_id) {
+        return dao.myinfo(member_id);
+    }
+
+    @Override
+    public int changeInfo(MemberVO vo) {
+        return dao.changeInfo(vo);
+    }
+
+
+    @Override
     public int minsert(MemberVO vo) {
         return dao.minsert(vo);
     }

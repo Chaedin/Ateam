@@ -11,7 +11,7 @@ public interface CartMapper {
 
     CartDTO selectOne(CartDTO dto);
 
-    List<CartDTO> cartList();
+    List<CartDTO> cartList(String member_id);
 
 //    int cartChangeCount(CartDTO dto);
     int cartChangeCount(int product_count, int product_no, String member_id);
@@ -26,6 +26,6 @@ public interface CartMapper {
     // 장바구니의 총 상품 갯수 (아마도 고쳐야 할 것임)
     int cartCnt(String member_id);
 
-    List<CartProductInfoDTO> cartInfoList(String member_id);
+    //List<CartProductInfoDTO> cartInfoList(String member_id);
 
 }

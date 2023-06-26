@@ -10,11 +10,11 @@ import java.util.List;
 @Repository
 public class CartProductInfoDAOImpl implements CartProductInfoDAO {
 
-    @Autowired
-    CartMapper mapper;
-
-    @Override
-    public List<CartProductInfoDTO> cartInfoList(String member_id) {
-        return mapper.cartInfoList(member_id);
-    }
+//    @Autowired
+//    CartMapper mapper;
+//
+//    @Override
+//    public List<CartProductInfoDTO> cartInfoList(String member_id) {
+//        return mapper.cartInfoList(member_id);
+//    }
 }

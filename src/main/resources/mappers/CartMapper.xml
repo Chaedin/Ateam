@@ -4,9 +4,9 @@
 <mapper namespace="mapperInterface.CartMapper">
 
     <!-- 장바구니에 저장(insert) -->
-    <insert id="cartInsert">
+    <insert id="cartInsert" parameterType="com.example.perfume01.dto.CartDTO">
         INSERT INTO cart(member_id, product_no, product_count)
-        VALUES #{member_id}, #{product_no}, #{product_count}
+        VALUES (#{member_id}, #{product_no}, #{product_count})
     </insert>
 
     <!-- 장바구니에 있는 상품인지 확인 -->
@@ -17,8 +17,14 @@
 
     <!-- 장바구니 조회 (list)-->
     <select id="cartList" resultType="com.example.perfume01.dto.CartDTO">
-        SELECT  * FROM cart
-        WHERE member_id=#{member_id}
+        SELECT cart.member_id, p.product_no, p.product_brand, p.product_name, p.product_price
+             , p.product_stock, cart.product_count, p.product_mainimg
+        FROM cart as cart JOIN
+            product as p
+        where
+            cart.product_no = p.product_no
+        AND
+            cart.member_id = #{member_id}
     </select>
 
 
@@ -35,7 +41,7 @@
 
     <!-- 주문후 카트 삭제 -->
     <delete id="cartDeleteAll">
-        DELETE cart WHERE member_id=#{member_id}
+        DELETE cart WHERE member_id=#{member_id},
     </delete>
 
     <!-- 장바구니 총 상품 갯수 (아마도 고쳐야 할 것임) -->
@@ -43,18 +49,10 @@
         SELECT count(*) FROM cart WHERE member_id=#{member_id}
     </select>
 
-    <!-- 장바구니의 상품 정보 -->
-    <select id="cartProductInfo" resultType="com.example.perfume01.dto.CartProductInfoDTO">
-        SELECT m.member_id,
-               p.product_brand,
-               p.product_name,
-               p.product_mainimg,
-               p.product_no,
-               p.product_price,
-               p.product_stock,
-               c.product_count
-        FROM member m, product p, cart c
-        WHERE m.member_id = #{member_id}
-    </select>
+ <!--   <select id="cartInfoList" resultType="com.example.perfume01.dto.CartProductInfoDTO">
+        SELECT m.member_id, p.product_no, p.product_brand, p.product_name, p.product_price
+             , p.product_stock, op.product_count, p.product_mainimg
+        FROM member m, product p, orders_payment op where m.member_id = #{member_id}
+    </select>-->
 
 </mapper>

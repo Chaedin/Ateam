@@ -13,6 +13,8 @@ import Joinus from './components/joinus/joinus';
 import Terms from './components/terms/terms';
 import Cart from './components/cart/cart';
 import Iteminfo from './components/iteminfo/iteminfo';
+import Orders from './components/orders/orders';
+import MemberUpdate from './components/memberupdate/memberupdate';
 
 function App() {
   return (
@@ -29,7 +31,9 @@ function App() {
       <Route path='/joinus' element={<Joinus/>}/>
       <Route path='/terms' element={<Terms/>}/>
       <Route path='/cart' element={<Cart/>}/>
-      <Route path='/iteminfo' element={<Iteminfo/>}/>
+      <Route path='/iteminfo/:product_no' element={<Iteminfo />} />
+      <Route path='/orders' element={<Orders/>}/>
+      <Route path='/memberUpdate' element={<MemberUpdate/>}/>
     </Routes>
     <Aside />
     <Footer />

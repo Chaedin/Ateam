@@ -17,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity @Log4j2
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -30,20 +31,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*","/**","/product/**","/static/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
+        .formLogin()
+                //커스텀 로그인 페이지 경로
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("http://localhost:8080")
                 .permitAll()
                 .and()
-                .logout()
+        .logout()
                 .logoutSuccessUrl("/")
                 .permitAll()
                 .and()
                 .httpBasic().disable()
                 .csrf().disable()
-                .cors().and()
+                .cors()
+                .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
     }
 
     @Bean
@@ -56,19 +59,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new InMemoryUserDetailsManager(user);
     }
 
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
-//        System.out.println("테스트중 1111111111111111111111111111111");
-//        security.httpBasic().disable();
-//        security.csrf().disable();
-//        security.cors();
-//        security.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//
-//        security.authorizeHttpRequests((auth)->{
-//            auth.antMatchers("/*","/**","/product/**","/static/**").permitAll()
-//                    .anyRequest().authenticated();
-//        });
-//        security.formLogin();
-//        return security.build();
-//    }
 }

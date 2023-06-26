@@ -11,7 +11,7 @@ public interface CartDAO {
 
     CartDTO selectOne(CartDTO dto);
 
-    List<CartDTO> cartList();
+    List<CartDTO> cartList(String member_id);
 
     int cartChangeCount(CartDTO dto);
 

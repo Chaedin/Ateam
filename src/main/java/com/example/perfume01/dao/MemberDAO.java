@@ -11,6 +11,13 @@ public interface MemberDAO {
 
     MemberVO selectOne(MemberVO vo);
 
+    MemberVO selectUser(String loginID);
+
+    // 내정보 보기
+    MemberVO myinfo(String member_id);
+
+    int changeInfo(MemberVO vo);
+
     int minsert(MemberVO vo);
 
     int mupdate(MemberVO vo);

@@ -6,4 +6,5 @@ import lombok.Data;
 public class ResponseDTO {
     int err_code;
     String msg;
+
 }

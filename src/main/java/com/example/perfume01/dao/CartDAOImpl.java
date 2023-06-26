@@ -25,8 +25,8 @@ public class CartDAOImpl implements CartDAO {
     }
 
     @Override
-    public List<CartDTO> cartList() {
-        return mapper.cartList();
+    public List<CartDTO> cartList(String member_id) {
+        return mapper.cartList(member_id);
     }
 
     @Override

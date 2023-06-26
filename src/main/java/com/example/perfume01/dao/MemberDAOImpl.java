@@ -25,6 +25,22 @@ public class MemberDAOImpl implements MemberDAO {
     }
 
     @Override
+    public MemberVO selectUser(String loginID) {
+        return mapper.selectUser(loginID);
+    }
+
+    @Override
+    public MemberVO myinfo(String member_id) {
+        return mapper.myinfo(member_id);
+    }
+
+    @Override
+    public int changeInfo(MemberVO vo) {
+        return mapper.changeInfo(vo);
+    }
+
+
+    @Override
     public int minsert(MemberVO vo) {
         return mapper.minsert(vo);
     }

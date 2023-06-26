@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -26,70 +27,63 @@ import java.util.Objects;
 @CrossOrigin(origins = {"http://127.0.0.1:3030"})
 @RestController @Log4j2
 @RequestMapping("/cart")
-@AllArgsConstructor
-@NoArgsConstructor
 public class CartRestController {
 
+    @Autowired
     CartService service;
 
+    @Autowired
     ProductService productService;
 
+    @Autowired
     CartProductInfoService infoService;
 
-    CartDAO cartDAO;
-
-    CartProductInfoDAO infoDAO;
-
+    @Autowired
     ProductDAO productDAO;
-
-    CartProductInfoDTO infoDTO;
 
 
     @GetMapping("/list")
-    public List<CartDTO> cartList() {
-        List<CartDTO> rtn = service.cartList();
+    public List<CartDTO> cartList(@RequestParam("member_id") String member_id) {
+        List<CartDTO> rtn = service.cartList(member_id);
         return rtn;
     }
 
     // 장바구니 페이지 (list)
     @GetMapping("/main")
-    public ResponseEntity<Map<String, Object>> mainList(HttpSession session) {
-        String member_id = (String) session.getAttribute("member_id");
-        infoDTO.setMember_id(member_id);
-        List<CartProductInfoDTO> itemInfo = infoService.cartInfoList(member_id);
+    public ResponseEntity<List<CartDTO>> mainList(@RequestParam("member_id") String member_id) {
+        System.out.println("프론트에서 받아온 멤버 아이디 : " + member_id);
+
+        List<CartDTO> itemInfo = service.cartList(member_id);
+        System.out.println(itemInfo.get(0)); //테스트용
         int cartCnt = service.cartCnt(member_id);
         int isEmpty = itemInfo.size();
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("itemInfo", itemInfo);
-        response.put("cartCnt", cartCnt);
-        response.put("isEmpty", isEmpty);
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(itemInfo);
     }
 
 
     // 장바구니에 상품 담기
     @PostMapping("/insert")
     public ResponseEntity<String> insert(
-            @RequestBody CartDTO cartDTO, HttpSession session,
-            ProductDTO productDTO
+            @RequestBody CartDTO cartDTO
     ) {
-        String member_id = (String) session.getAttribute("member_id");
-        cartDTO.setMember_id(member_id);
+        System.out.println("인서트 : " + cartDTO);
+
+        boolean checked = service.selectOne(cartDTO) == null;
+        System.out.println(checked);
+
+        // 담으려는 수량
         int product_count = cartDTO.getProduct_count();
+        // 재고 수량
         int product_stock = productService.selectStock(cartDTO.getProduct_no());
 
-        // 장바구니에 없는 상품인지 아닌지 체크
-        boolean isNew = service.selectOne(cartDTO) == null;
-
         // error 1,2,3 페이지를 만들어야 할 필요성이 있음. 없으면 그냥 메세지로 처리
-        if (product_count <= product_stock && isNew && product_count <= 10) {
+        if (product_count <= product_stock && checked && product_count <= 10) {
             service.cartInsert(cartDTO);
             return ResponseEntity.ok("success");
         } else if (product_count > 10) {
             return ResponseEntity.badRequest().body("error3");
-        } else if (!isNew) {
+        } else if (!checked) {
             return ResponseEntity.badRequest().body("error1");
         } else {
             return ResponseEntity.badRequest().body("error2");
@@ -137,13 +131,6 @@ public class CartRestController {
         return ResponseEntity.ok("수량이 변경되었습니다.");
     }
 
-
-
-
-    // 사용자의 아이디에 따른 상품 정보를 표시해 줘야함
-    // 테이블을 조인하여 xml에 sql문을 하나 만들어서 CartProductInfo 관련 항목들을
-    // 작성해 줘야 할 필요성이 있다.
-    // 리소스의 일부분을 업데이트해야하는 경우 Patch요청을 사용한다.
     @PatchMapping("/")
     public List<CartProductInfoDTO> changeProductQty(HttpSession session, CartDTO dto) {
         String member_id = (String) session.getAttribute("member_id");
@@ -157,6 +144,5 @@ public class CartRestController {
 
         return infoService.cartInfoList(member_id);
     }
-
 
 }
