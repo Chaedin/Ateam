@@ -144,15 +144,6 @@ const Login = () => {
                                 회원가입
                             </Link>
                         </div>
-
-                        <span>OR</span>
-
-                        <div>
-                            {/* <img src={require('../../image/컬러네이버.png')} alt="네이버" /> */}
-                            {/* <NaverLogin/> */}
-                            <img src={require('../../image/컬러카카오.png')} alt="카카오" />
-                            <img src={require('../../image/컬러구글.png')} alt="구글" />
-                        </div>
                     </div>
                 </div>
             </section>
