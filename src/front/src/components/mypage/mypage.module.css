@@ -28,18 +28,29 @@
 }
 
 .member_info {
-    width: 200px;
-    text-align: right;
+    width: 300px;
     font-size: var(--font-small);
 
 }
 
 .member_info li {
     padding-bottom: 20px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
 }
+.member_info li:nth-child(6) {
+    justify-content: end;
+}
+
+.memberupdate {
+    
+}
+
 
 .member_info li:nth-of-type(1) {
     font-size: var(--font-medium);
+    text-align: center;
 }
 
 .member_info span {
