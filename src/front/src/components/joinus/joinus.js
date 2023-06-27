@@ -141,7 +141,7 @@ const Joinus = () => {
                                 <td className={style.joinusInputTd}>
                                     <div>
                                         <input type="text" name="member_post" placeholder="우편번호" readOnly/>
-                                        <button type="button" className="find-address-btn" onClick={handleModalOpen}>검색</button>
+                                        <button type="button" className={style.post_btn} onClick={handleModalOpen}>검색</button>
                                     </div>
                                 </td>
                             </tr>

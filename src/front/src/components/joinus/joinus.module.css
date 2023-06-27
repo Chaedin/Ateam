@@ -71,6 +71,16 @@ section .main div {
 
 }
 
+.post_btn {
+    font-size: var(--font-small);
+    width: 50px;
+    line-height: 25px;
+    margin-left: 10px;
+    background-color: var(--color-grey);
+    border-radius: 10%;
+    color: var(--color-white);
+}
+
 section .main p {
     margin-bottom: 50px;
 }
