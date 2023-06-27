@@ -1,8 +1,36 @@
 import React from 'react';
+import axios from 'axios';
 import style from './modal.module.css';
 
 const Modal = (props) => {
     const { open, close, header } = props;
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const form = event.target;
+            const formData = new FormData(form);
+            const jsonData = {};
+
+            // Convert FormData to JSON
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
+            await axios.post('http://localhost:8080/board/addqa', jsonData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            // 성공적으로 전송되었을 때 처리할 코드 작성
+            console.log(jsonData);
+            close();
+        } catch (error) {
+            // 전송 실패 시 처리할 코드 작성
+            console.error(error);
+        }
+    };
+
 
     return (
         <div className={open ? `${style.openModal} ${style.modal}` : style.modal}>
@@ -13,36 +41,42 @@ const Modal = (props) => {
                         &times;
                     </button>
                 </header>
-                <form className={style.modal_form}>
+                <form className={style.modal_form} onSubmit={handleSubmit}>
                     <main>
-                        <label><p>이름</p><br />
-                            <input type='text' id='member_id'></input>
-                        </label><br />
-                        <label><p>전화번호</p><br />
-                            <input type='text' id='qa_phone'></input>
-                        </label><br />
-                        <label><p>문의 제목</p><br />
-                            <input type='text' id='qa_title'></input>
-                        </label><br />
-                        <label><p>문의 내용</p><br />
-                            <textarea type='text' id='qa_content' style={{ width: '300px', height: '150px' }} />
-                        </label><br />
+                        <label>
+                            <p>아이디</p>
+                            <br />
+                            <input type='text' name='member_id' placeholder="작성자님의 아이디를 입력해주세요" />
+                        </label>
+                        <br />
+                        <label>
+                            <p>문의 제목</p>
+                            <br />
+                            <input type='text' name='qa_title' />
+                        </label>
+                        <br />
+                        <label>
+                            <p>문의 내용</p>
+                            <br />
+                            <textarea type='text' name='qa_content' style={{ width: '300px', height: '150px' }} />
+                        </label>
+                        <br />
                         <div className={style.form_radiobox}>
                             <label>
-                                <input type="radio" id="public" name="visibility" value="public" checked />
+                                <input type="radio" name="qa_secret" value="yes" checked />
                                 &nbsp;&nbsp;공개
                             </label>
                             <label>
-                                <input type="radio" id="private" name="visibility" value="private" />
-                                &nbsp;&nbsp; 비공개
-                            </label><br />
+                                <input type="radio" name="qa_secret" value="no" />
+                                &nbsp;&nbsp;비공개
+                            </label>
+                            <br />
                         </div>
                     </main>
                     <footer>
-                        <button onClick={close}>
+                        <button type="submit">
                             문의
                         </button>
-
                         <button onClick={close}>
                             닫기
                         </button>
@@ -51,6 +85,6 @@ const Modal = (props) => {
             </section>
         </div>
     );
-}
+};
 
 export default Modal;

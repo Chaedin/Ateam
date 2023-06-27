@@ -1,9 +1,31 @@
-import React, { useState } from "react";
-import Modal from '../modal/modal';
+import React, {useEffect, useState} from "react";
 import style from './iteminfo.module.css';
+import {Link, useParams, useNavigate} from "react-router-dom";
+import axios, {get} from "axios";
+import Board from "../board/board";
+import board from "../board/board";
 
 const Iteminfo = () => {
     const [modalOpen, setModalOpen] = useState(false);
+    const [product, setProduct] = useState();   //상품
+    const {product_no} = useParams();
+    const [memberId, setMemberId] = useState(null);
+    const [qty, setQty] = useState(1);
+    const navigate = useNavigate();
+
+    const instance = axios.create({
+        baseURL: "http://localhost:8080",
+        withCredentials: true,
+    });
+    const fetchUserInfo = async () => {
+        try {
+            const response = await instance.get("/member/userinfo");
+            const data = response.data;
+            console.log(data);
+        } catch (error) {
+            console.error("유저 정보를 가져오는 중 오류 발생", error);
+        }
+    }
 
     const openModal = () => {
         setModalOpen(true);
@@ -11,27 +33,90 @@ const Iteminfo = () => {
     const closeModal = () => {
         setModalOpen(false);
     };
+
+    // 장바구니에 상품 추가
+    // 일단 하드코딩 해놓은 상태이기에 동적으로 설정해야함
+    const addToCart = async (product_no) => {
+        const member_id = sessionStorage.getItem('loginID');
+
+        try {
+            await axios.post(`http://localhost:8080/cart/insert`, {
+                member_id: member_id,
+                product_no: product_no,
+                product_count: qty,
+            })
+            console.log('장바구니 입력 테스트')
+            if (window.confirm('장바구니로 이동하시겠습니까')) {
+                navigate('/cart');
+            }
+        } catch (error) {
+            console.error("장바구니에 상품을 담는중 에러 발생")
+        }
+    };
+
+    const handleQtyChange = (value) => {
+        setQty(parseInt(value));
+    }
+
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/product/detail?product_no=${product_no}`);
+                const data = response.data;
+                setProduct(data);
+            } catch (error) {
+                console.error('상품 데이터를 가져오는 중 오류가 발생했습니다.', error);
+            }
+        };
+        fetchProduct();
+    }, [product_no]);
+
+    if (!product) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <>
-            <form>
+            <form onChange={board}>
                 <div className={style.iteminfo_wrapper}>
                     <div className={style.iteminfo_imgbox}>
-                        <div className={style.product_mainimg}></div>
-                        <div className={style.product_subimgbox}>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            {/* 서브이미지 갯수대로 map돌리기 */}
+                        <div className={style.product_mainimg}>
+                            {product.product_mainimg && (
+                                <img src={`http://localhost:8080/${product.product_mainimg}`} alt="" />
+                            )}
                         </div>
+                        {/*<div className={style.product_subimgbox}>*/}
+                        {/*    <div></div>*/}
+                        {/*    <div></div>*/}
+                        {/*    <div></div>*/}
+                        {/*    /!* 서브이미지 갯수대로 map돌리기 *!/*/}
+                        {/*</div>*/}
                     </div>
                     <div className={style.iteminfo_textbox}>
-                        <div className={style.product_name}></div>
-                        <div className={style.product_price}></div>
-                        <div className={style.product_content}></div>
-                        <div className={style.product_delivery_price}></div>
+                        <div className={style.product_name}>
+                            상품명 : {product.product_name}
+                        </div>
+                        <div className={style.product_price}>
+                            가격 : {product.product_price}
+                        </div>
+                        <div className={style.product_content}>
+                            상품 세부 정보 : {product.product_content}
+                        </div>
+                        <div className={style.product_delivery_price}>
+                            배송비 : {product.product_delivery_price}
+                        </div>
                         <div className={style.stock_and_button}>
-                            <input id="product_Stock" type="number" min="1" value="1" />
-                            <button className={style.iteminfo_cart}>장바구니</button>
+                            <input
+                                id="product_Stock"
+                                type="number"
+                                min="1"
+                                max={10}
+                                defaultValue={1}
+                                onChange={e=>{handleQtyChange(e.target.value)}}/>
+
+                                <button onClick={()=>addToCart(product_no)} className={style.iteminfo_cart}>장바구니</button>
+
                             <button className={style.iteminfo_buy}>구매</button>
                         </div>
                     </div>
@@ -40,31 +125,7 @@ const Iteminfo = () => {
 
             <img src={require('../../image/iteminfo_bigmimg.jpg')} alt="" style={{ width: '1100px', margin: '0 auto' }} />
 
-            <div className={style.qnacontainer1} id="qna">
-                <div className={style.qnachild_wrapper}>
-                    <div className={style.qnachild1}>
-                        <b>상품 Q&A</b>
-                        <p>
-                            -상품에 대해 궁금한 점을 남겨주세요.<br />
-                            -문의 답변은 마이페이지상품Q&A에서 확인하실 수 있습니다.<br />
-                        </p>
-                    </div>
-                    <button onClick={openModal} className={style.qnachild2}>문의하기</button>
-                    <Modal open={modalOpen} close={closeModal} header="Modal heading" />
-                </div>
-                <table className={style.qnatable}>
-                    <tr>
-                        <th></th>
-                        <th colspan="">문의/답변</th>
-                        <th></th>
-                        <th>작성자</th>
-                        <th>작성일</th>
-                    </tr>
-                    <tr>
-                        <td colspan="5">등록된 Q&A가 없습니다</td>
-                    </tr>
-                </table>
-            </div>
+            <Board></Board>
         </>
     );
 }

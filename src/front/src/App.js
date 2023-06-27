@@ -13,8 +13,8 @@ import Joinus from './components/joinus/joinus';
 import Terms from './components/terms/terms';
 import Cart from './components/cart/cart';
 import Iteminfo from './components/iteminfo/iteminfo';
-import Orders from './components/orders/orders';
-import MemberUpdate from './components/memberupdate/memberupdate';
+import Orders from "./components/orders/orders";
+import MemberUpdate from "./components/memberUpdate/memberupdate";
 
 function App() {
   return (

@@ -27,14 +27,6 @@
     height: 400px;
 }
 
-.profile .profile_img {
-    background: url(../../image/team_logo.png) center/cover;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 1px solid;
-}
-
 .member_info {
     width: 200px;
     text-align: right;
@@ -42,11 +34,12 @@
 
 }
 
-
+.member_info li {
+    padding-bottom: 20px;
+}
 
 .member_info li:nth-of-type(1) {
     font-size: var(--font-medium);
-    padding-bottom: 20px;
 }
 
 .member_info span {

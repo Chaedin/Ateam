@@ -1,6 +1,5 @@
 import React from "react";
 import { Accordion } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Accordionitem = ({ eventKey, accordionhead, accordionbody }) => {
     return (

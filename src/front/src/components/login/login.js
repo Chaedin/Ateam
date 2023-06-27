@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Topimg from '../topimg/topimg';
 import { Link, useNavigate } from 'react-router-dom';
 import style from '../login/login.module.css';
@@ -9,6 +9,56 @@ const Login = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // 쿠키 저장
+    const getCookie = (name) => {
+        const cookieName = name + '=';
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i];
+            while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1);
+            }
+            if (cookie.indexOf(cookieName) === 0) {
+                return cookie.substring(cookieName.length, cookie.length);
+            }
+        }
+        return '';
+    };
+
+    // 쿠키 가져오기
+    const setCookie = (name, value, expDays = 1) => {
+        const date = new Date();
+        date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
+        const expires = 'expires=' + date.toUTCString();
+        document.cookie = name + '=' + value + ';' + expires + ';path=/';
+    };
+
+
+
+    useEffect(() => {
+        // 세션 ID를 쿠키에서 가져온다.
+        const sessionID = getCookie('JSESSIONID');
+
+        // 세션 ID가 있는 경우에만 요청을 보냄
+        if (sessionID) {
+            axios.post('http://localhost:8080/member/login', {}, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest', // CORS 요청을 위한 헤더 추가
+                    'Content-Type': 'application/json', // 요청 컨텐츠 타입
+                    'Cookie': `JSESSIONID=${sessionID}` // 세션 ID를 쿠키로 포함시킴
+                }
+            })
+                .then((response) => {
+                    console.log(response.data); // 데이터 콘솔 출력
+                    setIsLoggedIn(true);
+                })
+                .catch(error => {
+                    console.error('로그인 상태 확인에 실패하였습니다.', error);
+                });
+        }
+    }, []);
+
     const handleIdChange = (e) => {
         setId(e.target.value);
     };
@@ -24,18 +74,21 @@ const Login = () => {
             member_id: id,
             member_pw: password,
         };
-        axios.post('http://localhost:8080/member/login', data)
-            .then((response)=>{
-                console.log(response.data);
+        axios.post('http://localhost:8080/member/login', data, {withCredentials: true,})
+            .then(response => {
+                // 세션 ID를 쿠키에 저장
+                setIsLoggedIn(true); // 로그인 상태 변경
+                alert('로그인 되었습니다. 태스트용입니다. 로그인 ID :  ,' + response.data.loginID + '로그인 이름 : ' + response.data.loginName);
+                sessionStorage.setItem('loginID', response.data.loginID);
+                sessionStorage.setItem('loginName', response.data.loginName);
+
                 navigate('/');
             })
-            .catch((error)=>{
+            .catch((error) => {
                 console.error(error);
-                alert('로그인시 에러가 발생하였습니다.')
-            })
+                alert('로그인시 에러가 발생하였습니다.');
+            });
     };
-
-
 
     return (
         <>

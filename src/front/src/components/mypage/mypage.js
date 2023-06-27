@@ -31,12 +31,11 @@ const Mypage = () => {
                 <div className={style.myPage_container}>
                     <h1 className={style.myPageText}>My Page</h1>
                     <div className={style.profile}>
-                        <div className={style.profile_img}></div>
                         <ul className={style.member_info}>
                             {myInfo ? (<li>{myInfo.member_name} 님</li>)
-                             : (<li>Loading</li>)
+                            : (<li>Loading</li>)
                             }
-                            {myInfo ? (<li className={style.layoutCoupon}>
+                            {myInfo ? (<li className={style.point}>
                                 보유 포인트 : {myInfo.member_point}
                             </li>) : (<li>
                                 보유 포인트 : Loading
