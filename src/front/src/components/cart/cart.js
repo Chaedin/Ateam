@@ -2,10 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {Link, Navigate} from "react-router-dom";
 import styles from './cart.module.css';
 import axios from "axios";
-import Orders from "../orders/orders";
+import Topimg from "../topimg/topimg";
+// import Orders from "../orders/orders";
 
-import * as events from "events";
-import {render} from "@testing-library/react";
+// import * as events from "events";
+// import {render} from "@testing-library/react";
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -110,6 +111,8 @@ const Cart = () => {
 
 
     return (
+        <>
+        <Topimg/>
         <div className={styles.cart_allcontainer}>
             <div>
                 <table className={styles.cart_table}>
@@ -182,8 +185,8 @@ const Cart = () => {
                             <li className={styles.cart_bottomright_price}>
                                 <strong>상품가격</strong>
                                 {/*{cartItems.map(item => (totalPrice + item.product_price*1) )}*/}
-                                {totalPrice}
-                                <strong>원</strong>
+                                
+                                <strong>{totalPrice} 원</strong>
                             </li>
 
                             <li className={styles.cart_bottomright_delivery}>
@@ -193,8 +196,8 @@ const Cart = () => {
 
                             <li className={styles.cart_bottomright_totalprice}>
                                 <strong>합계</strong>
-                                {totalPrice}
-                                <strong>원</strong>
+                                
+                                <strong>{totalPrice} 원</strong>
                             </li>
                         </ul>
                         <Link to='/orders'>
@@ -204,6 +207,7 @@ const Cart = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 }
 

@@ -25,12 +25,12 @@
 }
 
 .cart_allcontainer tfoot button {
-    width: 150px;
-    line-height: 50px;
+    width: 130px;
+    line-height: 40px;
     background-color: #000000;
-    border-radius: 10px;
+    border-radius: 3px;
     color: white;
-    font-weight: bold;
+    font-size : var(--font-small);
     margin: 20px;
 }
 
@@ -44,14 +44,14 @@
     background-color: #eeeeee;
     width: 300px;
     line-height: 50px;
-    border-radius: 10px;
+    border-radius: 3px;
     margin: 30px;
 
 }
 
 .cart_bottomleft_container p,
 .cart_bottomrightcontainer p {
-    width: 180px;
+    width: 280px;
     margin: 10px auto;
 }
 
@@ -60,9 +60,8 @@
     background-color: black;
     width: 100px;
     height: 30px;
-    border-radius: 10px;
-    font-weight: bold;
-
+    border-radius: 3px;
+    font-size : var(--font-small);
 }
 
 .cart_bottom_textarea {
@@ -79,7 +78,8 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid grey;
-    margin: 20px 0;
+    margin: 20px auto;
+    width: 300px;
 }
 
 .cart_payment {
@@ -87,6 +87,7 @@
     color: white;
     width: 150px;
     height: 50px;
-    border-radius: 10px;
+    border-radius: 3px;
     font-weight: bold;
+    font-size : var(--font-regular);
 }

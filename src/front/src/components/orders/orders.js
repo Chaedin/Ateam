@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Mypageitem from "../mypage/mypageitem";
-import DaumPostcode from "react-daum-postcode";
 import Modal from "react-modal";
+
 
 const Orders = () => {
     const [myInfo, setMyInfo] = useState({}); // 내정보
