@@ -67,7 +67,7 @@ const Joinus = () => {
                     <table>
                         <tbody>
                             <tr>
-                                <td>ID</td>
+                                <th>ID</th>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.userId}>
                                         <input type="text" className="id" name="member_id" required />
@@ -77,7 +77,7 @@ const Joinus = () => {
                             </tr>
 
                             <tr>
-                                <td>NAME</td>
+                                <th>NAME</th>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.userName}>
                                         <input type="text" className="name" name="member_name" required />
@@ -86,7 +86,7 @@ const Joinus = () => {
                             </tr>
 
                             <tr>
-                                <td>닉네임</td>
+                                <th>닉네임</th>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.userName}>
                                         <input type="text" className="name" name="member_nick" required />
@@ -95,7 +95,7 @@ const Joinus = () => {
                             </tr>
                             
                             <tr>
-                                <td>PASSWORD</td>
+                                <th>PASSWORD</th>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.userPw}>
                                         <input type="password" className="pw" name="member_pw" required />
@@ -104,7 +104,7 @@ const Joinus = () => {
                             </tr>
 
                             <tr>
-                                <td>VERIFY PASSWORD</td>
+                                <th>VERIFY PASSWORD</th>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.userPw}>
                                         <input type="password" className="pw" name="verify_pw" required />
@@ -113,7 +113,7 @@ const Joinus = () => {
                             </tr>
 
                             <tr>
-                                <td>E-MAIL</td>
+                                <th>E-MAIL</th>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.email}>
                                         <input type="text" name="member_email" required /> @
@@ -128,7 +128,7 @@ const Joinus = () => {
                             </tr>
 
                             <tr>
-                                <td>PHONE NUMBER</td>
+                                <th>PHONE NUMBER</th>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.userPhone}>
                                         <input type="text" minLength="11" maxLength="11" size="15" name="member_phone" required />
@@ -137,7 +137,7 @@ const Joinus = () => {
                             </tr>
 
                             <tr>
-                                <td>우편번호</td>
+                                <th>우편번호</th>
                                 <td className={style.joinusInputTd}>
                                     <div>
                                         <input type="text" name="member_post" placeholder="우편번호" readOnly/>
@@ -146,7 +146,7 @@ const Joinus = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td>기본주소</td>
+                                <th>기본주소</th>
                                 <td className={style.joinusInputTd}>
                                     <div>
                                         <input type="text" name="member_basic_addr" placeholder="기본주소"/>
@@ -154,7 +154,7 @@ const Joinus = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <td>상세주소</td>
+                                <th>상세주소</th>
                                 <td className={style.joinusInputTd}>
                                     <div>
                                         <input type="text" name="member_detail_addr" placeholder={"상세주소"}/>

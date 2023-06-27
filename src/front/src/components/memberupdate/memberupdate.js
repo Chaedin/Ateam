@@ -3,6 +3,7 @@ import DaumPostcode from "react-daum-postcode";
 import style from './memberupdate.module.css';
 import axios from "axios";
 import Modal from "react-modal";
+import Topimg from "../topimg/topimg";
 
 const MemberUpdate = () => {
 
@@ -72,60 +73,92 @@ const MemberUpdate = () => {
 
     return (
         <>
+            <Topimg/>
             <form id='myForm' onSubmit={handleSubmit} method="post" className={style.edit_member}>
                 <input type="hidden" name="member_id" value={myInfo?.member_id}/>
-                <div className={style.container_600}>
-                    <h1>회원 정보 변경</h1>
+                <div className={style.container}>
+                    <h1 className={style.memberUpdateText}>회원 정보 변경</h1>
                 </div>
 
-                <div className={style.row}>
-                    <label>닉네임</label>
-                    <input type="text" name="member_nick" className={style.nick} placeholder={myInfo?.member_nick}/>
-                    {/*<div className={valid_message}>사용 가능한 닉네임입니다</div>*/}
-                    {/*<div className={invalid_message}>닉네임은 한글 또는 숫자 2~10자로 작성하세요</div>*/}
-                    {/*<div className={invalid_message2}>이미 사용중인 닉네임입니다</div>*/}
-                </div>
+                <div className={style.memberUpdateTable}>
+                <table >
+                    <tbody>
+                        <tr className={style.nick}>
+                            <th>
+                                <label>닉네임</label>
+                            </th>
+                            <td>
+                                <input type="text" name="member_nick" placeholder={myInfo?.member_nick}/>
+                                {/*<div className={valid_message}>사용 가능한 닉네임입니다</div>*/}
+                                {/*<div className={invalid_message}>닉네임은 한글 또는 숫자 2~10자로 작성하세요</div>*/}
+                                {/*<div className={invalid_message2}>이미 사용중인 닉네임입니다</div>*/}
+                            </td>
+                        </tr>
 
-                <div className={style.row}>
-                    <label>전화번호</label>
-                    <input type="tel" name="member_phone" className={style.tel} placeholder={myInfo?.member_phone}/>
-                    {/*<div className={valid_message}>사용 가능한 전화번호입니다</div>*/}
-                    {/*<div className={invalid_message}>올바른 전화번호가 아닙니다</div>*/}
-                </div>
+                        <tr  className={style.tel}>
+                            <th>
+                                <label>전화번호</label>
+                            </th>
+                            <td>
+                                <input type="tel" name="member_phone" placeholder={myInfo?.member_phone}/>
+                                {/*<div className={valid_message}>사용 가능한 전화번호입니다</div>*/}
+                                {/*<div className={invalid_message}>올바른 전화번호가 아닙니다</div>*/}
+                            </td>
+                        </tr>
 
-                <div className={style.row}>
-                    <label>이메일</label>
-                    <input type="email" name="member_email" className={style.tel}  placeholder={myInfo?.member_email}/>
-                    {/*<div className={valid_message}>사용 가능한 이메일 입니다</div>*/}
-                    {/*<div className={invalid_message}>올바른 이메일 형식을 입력해주세요</div>*/}
-                    {/*<div className={invalid_message2}>이미 사용중인 이메일입니다</div>*/}
-                </div>
+                        <tr className={style.email}>
+                            <th>
+                                <label>이메일</label>
+                            </th>
+                            <td>
+                                <input type="email" name="member_email"  placeholder={myInfo?.member_email}/>
+                                {/*<div className={valid_message}>사용 가능한 이메일 입니다</div>*/}
+                                {/*<div className={invalid_message}>올바른 이메일 형식을 입력해주세요</div>*/}
+                                {/*<div className={invalid_message2}>이미 사용중인 이메일입니다</div>*/}
+                            </td>
+                        </tr>
 
-                <div className={style.row}>
-                    <label>주소</label>
-                    <input type="text" name="member_post" className={style.post} placeholder={myInfo?.member_post} readOnly />
-                    <button type="button" className={style.post_btn} onClick={handleModalOpen}>검색</button>
-                </div>
-                <div class="row">
-                    <input type="text" name="member_basic_addr" className={style.basic_post}  placeholder={myInfo?.member_basic_addr} readOnly />
-                </div>
-                <div class="row">
-                    <input type="text" name="member_detail_addr" required className={style.detail_post}  placeholder={myInfo?.member_detail_addr} />
-                        <div >주소를 작성해주세요</div>
-                </div>
-                <div className={style.row}>
-                    <label className={style.form_label}>보유 포인트</label>
-                    <input type="text" name="member_point" required className={style.point} placeholder={myInfo?.member_point} value={myInfo?.member_point} readOnly/>
-                </div>
+                        <tr className={style.post}>
+                        <th>
+                            <label>주소</label>
+                        </th>
+                        <td>
+                            <input type="text" name="member_post"  placeholder={myInfo?.member_post} readOnly />
+                            <button type="button" className={style.post_btn} onClick={handleModalOpen}>검색</button>
+                        </td>
+                            
+                        </tr>
 
-                <div className={style.btn}>
-                    <a herf={'/main'} className={style.btn_detail}>목록</a>
-                    <button type="submit" id="saveBtn">정보 수정</button>
-                </div>
+                        <tr className={style.basic_post}>
+                        <th></th>
+                        <td >
+                            <input type="text" name="member_basic_addr" placeholder={myInfo?.member_basic_addr} readOnly />
+                        </td>
+                        </tr>
 
-                <Modal isOpen={isModalOpen} onRequestClose={handleModalClose} style={modalStyles}>
-                    <DaumPostcode onComplete={handleAddressSelect} />
-                </Modal>
+                        <tr className={style.detail_post}>
+                        <th></th>
+                        <td >
+                            <input type="text" name="member_detail_addr" required placeholder={myInfo?.member_detail_addr} />
+                            <p className={style.post_p}>상세주소를 정확히 작성해주세요</p>
+                        </td>
+                        </tr>
+
+                        <tr className={style.point}>
+                        <th>
+                            <label>보유 포인트</label>
+                        </th>
+                        <td>
+                            <input type="text" name="member_point" required placeholder={myInfo?.member_point} value={myInfo?.member_point} readOnly/>
+                        </td>
+                        </tr>
+                        <Modal isOpen={isModalOpen} onRequestClose={handleModalClose} style={modalStyles}>
+                            <DaumPostcode onComplete={handleAddressSelect} />
+                        </Modal>
+                    </tbody>
+                </table>
+                </div>
+                <button className={style.saveBtn} type="submit" id="saveBtn">정보 수정</button>
             </form>
         </>
     )

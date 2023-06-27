@@ -6,7 +6,7 @@ section .main {
 }
 
 .join_us {
-    width: 170px;
+    width: 180px;
     margin: 30px auto;
     font-size: var(--font-large);
     border-bottom: 2px solid;
@@ -28,7 +28,8 @@ section .main {
 
 }
 
-.main td {
+.main td,
+.main th {
     padding: 0 40px;
     text-align: left;
 }
@@ -46,7 +47,7 @@ tr .joinusInputTd {
 }
 
 .userPhone input {
-    width: 220px;
+    width: 200px;
 }
 
 section .main div {
