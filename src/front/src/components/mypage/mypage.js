@@ -41,7 +41,7 @@ const Mypage = () => {
                             {myInfo ? (<li><p>주소 : </p><p>{myInfo.member_basic_addr}, {myInfo.member_detail_addr}</p></li>)
                             : (<li>Loading</li>)
                             }
-                            {myInfo ? (<li><p>Email : </p><p>x{myInfo.member_email}</p></li>)
+                            {myInfo ? (<li><p>Email : </p><p>{myInfo.member_email}</p></li>)
                             : (<li>Loading</li>)
                             }
                             {myInfo ? (<li className={style.point}><p>보유 포인트 : </p><p>{myInfo.member_point} p</p></li>) 

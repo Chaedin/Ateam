@@ -30,7 +30,6 @@
 .member_info {
     width: 300px;
     font-size: var(--font-small);
-
 }
 
 .member_info li {
@@ -39,13 +38,16 @@
     display: flex;
     justify-content: space-between;
 }
+
 .member_info li:nth-child(6) {
     justify-content: end;
 }
 
-.memberupdate {
-    
+.member_info li>p:nth-child(1) {
+    font-weight: bold;
 }
+
+
 
 
 .member_info li:nth-of-type(1) {
