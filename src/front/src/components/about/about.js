@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import style from '../about/about.module.css';
+import Topimg from '../topimg/topimg';
 
 const About = () => {
 
@@ -31,6 +32,8 @@ const About = () => {
 
 
     return (
+        <>
+        <Topimg/>
         <section id={style.about}>
             <div className={style.about__container}>
                 <p className={style.p__story}>our Story</p>
@@ -103,6 +106,7 @@ const About = () => {
                 </div>
             </div>
         </section>
+        </>
     )
 }
 
