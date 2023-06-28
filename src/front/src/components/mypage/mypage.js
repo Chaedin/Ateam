@@ -30,30 +30,32 @@ const Mypage = () => {
             <section>
                 <div className={style.myPage_container}>
                     <h1 className={style.myPageText}>My Page</h1>
-                    <div className={style.profile}>
-                        <ul className={style.member_info}>
-                            {myInfo ? (<li>{myInfo.member_name} 님 <p>({myInfo.member_role})</p></li>)
-                            : (<li>Loading</li>)
-                            }
-                            {myInfo ? (<li><p>전화번호 : </p><p>{myInfo.member_phone}</p></li>)
-                            : (<li>Loading</li>)
-                            }
-                            {myInfo ? (<li><p>주소 : </p><p>{myInfo.member_basic_addr}, {myInfo.member_detail_addr}</p></li>)
-                            : (<li>Loading</li>)
-                            }
-                            {myInfo ? (<li><p>Email : </p><p>{myInfo.member_email}</p></li>)
-                            : (<li>Loading</li>)
-                            }
-                            {myInfo ? (<li className={style.point}><p>보유 포인트 : </p><p>{myInfo.member_point} p</p></li>) 
-                            : (<li>보유 포인트 : Loading</li>)
-                            }
+                    <div className={style.profileArea}>
+                        <div className={style.profile}>
+                            <ul className={style.member_info}>
+                                {myInfo ? (<li>{myInfo.member_name} 님 <p>({myInfo.member_role})</p></li>)
+                                : (<li>Loading</li>)
+                                }
+                                {myInfo ? (<li><p>전화번호 : </p><p>{myInfo.member_phone}</p></li>)
+                                : (<li>Loading</li>)
+                                }
+                                {myInfo ? (<li><p>주소 : </p><p>{myInfo.member_basic_addr}, {myInfo.member_detail_addr}</p></li>)
+                                : (<li>Loading</li>)
+                                }
+                                {myInfo ? (<li><p>Email : </p><p>{myInfo.member_email}</p></li>)
+                                : (<li>Loading</li>)
+                                }
+                                {myInfo ? (<li className={style.point}><p>보유 포인트 : </p><p>{myInfo.member_point} p</p></li>) 
+                                : (<li>보유 포인트 : Loading</li>)
+                                }
 
-                            <li>
-                                <Link to='/memberupdate'>
-                                    <span className={style.memberupdate}>회원 정보 수정</span>
-                                </Link>
-                            </li>
-                        </ul>
+                                <li>
+                                    <Link to='/memberupdate'>
+                                        <span className={style.memberupdate}>회원 정보 수정</span>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <hr />
                     <div className={style.order_check_all}>
