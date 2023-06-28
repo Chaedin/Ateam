@@ -20,8 +20,15 @@
     background-color: #eeeeee;
 }
 
-.cart_table_thead tr th {
+.cart_table_thead tr th,
+.productName,
+.productPrice {
     color: #000000;
+}
+
+.productImg {
+    width: 100px;
+    height: 100px;
 }
 
 .cart_allcontainer tfoot button {

@@ -13,7 +13,7 @@ import Joinus from './components/joinus/joinus';
 import Terms from './components/terms/terms';
 import Cart from './components/cart/cart';
 import Iteminfo from './components/iteminfo/iteminfo';
-import Orders from "./components/orders/orders";
+import Payment from './components/orders/payment';
 import MemberUpdate from "./components/memberUpdate/memberupdate";
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
       <Route path='/terms' element={<Terms/>}/>
       <Route path='/cart' element={<Cart/>}/>
       <Route path='/iteminfo/:product_no' element={<Iteminfo />} />
-      <Route path='/orders' element={<Orders/>}/>
+      <Route path='/payment' element={<Payment/>}/>
       <Route path='/memberUpdate' element={<MemberUpdate/>}/>
     </Routes>
     <Aside />

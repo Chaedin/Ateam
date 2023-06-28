@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Link, Navigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import styles from './cart.module.css';
 import axios from "axios";
 import Topimg from "../topimg/topimg";
-// import Orders from "../orders/orders";
+
 
 // import * as events from "events";
 // import {render} from "@testing-library/react";
@@ -118,7 +118,8 @@ const Cart = () => {
                 <table className={styles.cart_table}>
                     <thead className={styles.cart_table_thead}>
                         <tr>
-                            <th>상품목록</th>
+                            <th>상품</th>
+                            <th>상품이름</th>
                             <th>수량</th>
                             <th>가격</th>
                             <th>상품체크</th>
@@ -130,10 +131,10 @@ const Cart = () => {
                             cartItems.map(item => (
                                 <tr key={item.product_no}>
                                     <td>
-                                        {item.product_name}
-                                        <img src={`http://localhost:8080/${item.product_mainimg}`}/>
+
+                                        <img className={styles.productImg} src={`http://localhost:8080/${item.product_mainimg}`}/>
                                     </td>
-                                    <td>{item.product_tagno}</td>
+                                    <td className={styles.productName}>{item.product_name}</td>
                                     <td>
                                         <input
                                             type="number"
@@ -142,7 +143,7 @@ const Cart = () => {
                                             value={item.product_count}
                                         />
                                     </td>
-                                    <td>{item.product_price}</td>
+                                    <td className={styles.productPrice}>{item.product_price}</td>
                                     <td>
                                         {/*<button onClick={() => handleDelete(item.product_no)}>삭제</button>*/}
                                         <button>삭제</button>
@@ -200,7 +201,7 @@ const Cart = () => {
                                 <strong>{totalPrice} 원</strong>
                             </li>
                         </ul>
-                        <Link to='/orders'>
+                        <Link to='/Payment'>
                             <button className={styles.cart_payment} onClick={handleCheckout}>주문하기</button>
                         </Link>
                     </div>
