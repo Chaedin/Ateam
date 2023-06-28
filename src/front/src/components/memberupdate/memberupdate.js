@@ -77,7 +77,7 @@ const MemberUpdate = () => {
             <form id='myForm' onSubmit={handleSubmit} method="post" className={style.edit_member}>
                 <input type="hidden" name="member_id" value={myInfo?.member_id}/>
                 <div className={style.container}>
-                    <h1 className={style.memberUpdateText}>회원 정보 변경</h1>
+                    <h1 className={style.memberUpdateText}>Edit Information</h1>
                 </div>
 
                 <div className={style.memberUpdateTable}>
