@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
-import styles from './cart.module.css';
+import style from './cart.module.css';
 import axios from "axios";
 import Topimg from "../topimg/topimg";
 
@@ -14,7 +14,8 @@ const Cart = () => {
     const [isEmpty, setIsEmpty] = useState(0);
     const [member_id, setMember_id] = useState();
     const [memberInfo, setMemberInfo] = useState(0);
-    let [totalPrice, setTotalPrice] = useState(0)
+    let [totalPrice, setTotalPrice] = useState(0);
+    const [userPoint, setUserPoint] = useState();
 
     useEffect(() => {
         const member_id = sessionStorage.getItem('loginID');
@@ -35,6 +36,7 @@ const Cart = () => {
         axios.get(`http://localhost:8080/member/userinfo?member_id=${member_id}`)
             .then(response => {
                 setMemberInfo(response.data);
+                setUserPoint(response.data.member_point)
             })
             .catch(error => {
                 console.log("장바구니 정보 요청 에러");
@@ -113,16 +115,17 @@ const Cart = () => {
     return (
         <>
         <Topimg/>
-        <div className={styles.cart_allcontainer}>
+        <div className={style.cart_allcontainer}>
+            <h1 className={style.cartText}>Cart</h1>
             <div>
-                <table className={styles.cart_table}>
-                    <thead className={styles.cart_table_thead}>
+                <table className={style.cart_table}>
+                    <thead className={style.cart_table_thead}>
                         <tr>
-                            <th>상품</th>
-                            <th>상품이름</th>
-                            <th>수량</th>
-                            <th>가격</th>
-                            <th>상품체크</th>
+                            <td>상품</td>
+                            <td>상품이름</td>
+                            <td>수량</td>
+                            <td>가격</td>
+                            <td>상품체크</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -131,10 +134,9 @@ const Cart = () => {
                             cartItems.map(item => (
                                 <tr key={item.product_no}>
                                     <td>
-
-                                        <img className={styles.productImg} src={`http://localhost:8080/${item.product_mainimg}`}/>
+                                        <img className={style.productImg} src={`http://localhost:8080/${item.product_mainimg}`}/>
                                     </td>
-                                    <td className={styles.productName}>{item.product_name}</td>
+                                    <td className={style.productName}>{item.product_name}</td>
                                     <td>
                                         <input
                                             type="number"
@@ -143,70 +145,57 @@ const Cart = () => {
                                             value={item.product_count}
                                         />
                                     </td>
-                                    <td className={styles.productPrice}>{item.product_price}</td>
+                                    <td className={style.productPrice}>{item.product_price} 원</td>
                                     <td>
                                         {/*<button onClick={() => handleDelete(item.product_no)}>삭제</button>*/}
-                                        <button>삭제</button>
+                                        <button className={style.deleteBtn}>삭제</button>
                                     </td>
                                 </tr>
                             ))
                         }
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colSpan={5}>
-                                <button onClick={handleBulkDelete}>선택상품 삭제</button>
-                            </td>
-                        </tr>
-                    </tfoot>
                 </table>
-            </div>
-            <div className={styles.cart_bottomcontainer}>
-                <div className={styles.cart_bottomleft_container}>
-                    <div className={styles.cart_box}>포인트 입력</div>
-                    <p>사용하실 포인트를 입력해 주세요</p>
-                    <p>현재 보유 포인트 : {memberInfo.member_point}</p>
-                    <div>
-                        {/* input type추후에 수정해주세요 */}
-                        <label>
-                            <input type="text" placeholder="포인트" />{' '}
-                            <button className={styles.cart_input_button}
-                            onClick={handleApplyPoints}>포인트 적용</button>
-                        </label>
+                    <div >
+                        <button className={style.cartTableBtn} onClick={handleBulkDelete}>선택상품 삭제</button>
                     </div>
-                    <div className={styles.cart_box}>판매자에게 문의</div>
+            </div>
+
+            <hr className={style.cartHr}/>
+
+            <div className={style.cart_bottomcontainer}>
+                <div className={style.cart_bottomleft_container}>
+                    
+                    <div className={style.cart_box}>판매자에게 문의</div>
                     <p>상품관련으로 문의하실 사항이 있으시면 아래 박스에 내용을 작성해주세요</p>
-                    <textarea className={styles.cart_bottom_textarea}></textarea>
+                    <textarea className={style.cart_bottom_textarea}></textarea>
                 </div>
-                <div className={styles.cart_bottomrightcontainer}>
-                    <div className={styles.cart_box}>주문 내역</div>
+                <div className={style.cart_bottomrightcontainer}>
+                    <div className={style.cart_box}>주문 내역</div>
                     <div>
                         <p>배송비 및 추가 비용은 입력된 값을 기준으로 계산됩니다</p>
                         <ul>
-                            <li className={styles.cart_bottomright_price}>
+                            <li className={style.cart_bottomright_totalprice}>
+                                <strong>보유 포인트</strong>
+                                <strong>{userPoint} 원</strong>
+                                
+                            </li>
+                            
+                            <li className={style.cart_bottomright_price}>
                                 <strong>상품가격</strong>
                                 {/*{cartItems.map(item => (totalPrice + item.product_price*1) )}*/}
                                 
                                 <strong>{totalPrice} 원</strong>
                             </li>
-
-                            <li className={styles.cart_bottomright_delivery}>
-                                <strong>배송비</strong>
-                                <strong>0 원</strong>
-                            </li>
-
-                            <li className={styles.cart_bottomright_totalprice}>
-                                <strong>합계</strong>
-                                
-                                <strong>{totalPrice} 원</strong>
-                            </li>
+                            <p className={style.pointP}>*포인트는 결제 페이지에서 사용가능</p>
                         </ul>
-                        <Link to='/Payment'>
-                            <button className={styles.cart_payment} onClick={handleCheckout}>주문하기</button>
-                        </Link>
+                        
+
                     </div>
                 </div>
             </div>
+            <Link to='/Payment'>
+                            <button className={style.cart_payment} onClick={handleCheckout}>주문하기</button>
+            </Link>
         </div>
         </>
     );
