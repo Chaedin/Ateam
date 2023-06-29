@@ -54,7 +54,7 @@
 }
 
 .totalPrice {
-    width: 70%;
+    width: 80%;
     line-height: 100px;
     margin: auto;
     display: flex;
@@ -74,8 +74,32 @@
 }
 
 .totalPriceArea {
-    height: 100px;
+    height: 200px;
 }
+
+.totalPrice,
+.pointBox {
+    height: 80px;
+}
+
+.pointPrice {
+    padding-top: 20px;
+}
+
+.pointBtnBox {
+    margin-top: 10px;
+}
+
+.pointBtn {
+    color: var(--color-white);
+    background-color: var(--color-black);
+    width: 50px;
+    height: 25px;
+    border-radius: 3px;
+    font-size : var(--font-small);
+    margin-left: 10px;
+}
+
 
 .kakaopayBtn {
     margin-top: 100px;

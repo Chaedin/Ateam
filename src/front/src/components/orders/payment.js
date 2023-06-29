@@ -15,9 +15,14 @@ const Payment = () => {
     const [post, setPost] = useState();
     const [addr, setAddr] = useState();
     const [detail, setDetailAddr] = useState();
+    const [point, setPoint] = useState();
+    const [userPoint, setUserPoint] = useState();
+    const [inputValue, setInputValue] = useState(0);
+    const [resultPoint, setResultPoint] = useState();
+    const [finalPoint, setFinalPoint] = useState();
 
     // 결재상품 정보
-    useEffect(()=>{
+    useEffect(() => {
         let member_id = sessionStorage.getItem('loginID');
         axios
             .get(`http://localhost:8080/cart/main?member_id=${member_id}`)
@@ -32,7 +37,7 @@ const Payment = () => {
     }, [])
 
     // 결제자 정보
-    useEffect(()=>{
+    useEffect(() => {
         let memberName = '';
         let member_id = sessionStorage.getItem('loginID');
         axios
@@ -44,6 +49,7 @@ const Payment = () => {
                 setPost(response.data.member_post);
                 setAddr(response.data.member_basic_addr);
                 setDetailAddr(response.data.member_detail_addr);
+                setPoint(response.data.member_point)
             })
     })
 
@@ -72,8 +78,8 @@ const Payment = () => {
                 pay_method: 'card',
                 merchant_uid: `merchant_${new Date().getTime()}`,
                 name: 'perfume 결제 테스트',
-                amount: totalPrice,
-                custom_data: { name: '부가정보', deps: '세부 부가정보' },
+                amount: totalPrice - finalPoint,
+                custom_data: {name: '부가정보', deps: '세부 부가정보'},
                 buyer_name: memberName,
                 buyer_tel: phone,
                 buyer_email: email,
@@ -85,7 +91,7 @@ const Payment = () => {
     };
 
     const callback = (response) => {
-        const { success, error_msg } = response;
+        const {success, error_msg} = response;
         if (success) {
             alert('결제 성공');
         } else {
@@ -93,9 +99,26 @@ const Payment = () => {
         }
     };
 
+
+    const handleApplyPoints = () => {
+        const uPoint = parseInt(userPoint, 10);
+        const iPoint = parseInt(inputValue, 10);
+
+        if (iPoint > uPoint) {
+            alert('보유하신 포인트 보다 많이 입력할수 없습니다.')
+            return;
+        }
+        setResultPoint(uPoint - iPoint);
+        setFinalPoint(iPoint);
+    };
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+    }
+
     return (
         <>
-        <Topimg/>
+            <Topimg/>
 
             <div className={style.paymentContainer}>
                 <h1 className={style.paymentText}>Order Sheet</h1>
@@ -136,14 +159,28 @@ const Payment = () => {
                         <h2>결제</h2>
                     </div>
                     <div className={style.totalPriceArea}>
-                        <div className={style.totalPrice}>
-                            <div>상품액 {totalPrice} 원</div>
-                            <div>-</div>
-                            <div>사용포인트 0 원</div>
-                            <div>=</div>
-                            <div>총 상품액 {totalPrice} 원</div>
+                        <div className={style.pointPrice}>
+                            <div className={style.pointBox}>
+                                <p>사용하실 포인트를 입력해 주세요</p>
+                                <p>사용가능한 포인트 : {point}</p>
+                                <div className={style.pointBtnBox}>
+                                    <label>
+                                        <input type="text" placeholder="사용 포인트 입력" onChange={handleInputChange}/>
+                                        <button className={style.pointBtn} onClick={handleApplyPoints}>적용</button>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div className={style.totalPrice}>
+                                <div>상품액 {totalPrice} 원</div>
+                                <div>-</div>
+                                <div>사용포인트 {finalPoint || 0} 원</div>
+                                <div>=</div>
+                                <div>총 결제금액 {totalPrice - finalPoint || 0} 원</div>
+                            </div>
                         </div>
                     </div>
+
                     <div>
                         <button className={style.kakaopayBtn} onClick={onClickPayment}>카카오페이로 결제하기</button>
                     </div>
@@ -154,5 +191,4 @@ const Payment = () => {
 };
 
 export default Payment;
-
 
