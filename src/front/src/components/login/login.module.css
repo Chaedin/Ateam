@@ -16,7 +16,7 @@
     margin-top: 100px;
 }
 
-.login_container input {
+input {
     outline: none;
 }
 
@@ -107,6 +107,12 @@
     margin-top: 15px;
     font-size: var(--font-small);
     color: var(--color-black);
+}
+
+/* 다른로그인 이미지 */
+.login_container img {
+    width: 35px;
+    margin: 40px 5px;
 }
 
 

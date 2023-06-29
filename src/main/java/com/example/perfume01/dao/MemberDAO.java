@@ -22,6 +22,8 @@ public interface MemberDAO {
 
     int mupdate(MemberVO vo);
 
+    int pointupdate(MemberVO vo);
+
     int mdelete(MemberVO vo);
 
 
@@ -30,4 +32,16 @@ public interface MemberDAO {
 
     List<MemberVO> searchList(SearchCriteria criteria);
     int searchTotalCount(SearchCriteria criteria);
+
+
+    // 이메일 인증 관련
+    int updateMailKey(MemberVO vo);
+
+    int updateMailAuth(MemberVO vo);
+
+    int emailAuthFail(String member_id);
+
+    int changePassword(String member_id, String member_pw);
+
+    int findPw(String member_id, String member_email);
 }

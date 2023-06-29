@@ -4,18 +4,30 @@ import {Link, useNavigate} from "react-router-dom";
 import style from '../joinus/joinus.module.css';
 import Modal from 'react-modal';
 import axios from "axios";
-import Topimg from "../topimg/topimg";
 
 
 const Joinus = () => {
+    const navigate = useNavigate();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [memberId,setMemberId]=useState([]);
+    const [inputId,setInputId]=useState("");
+
+
+
+    const [emailInput,setEmailInput] = useState('');
+    const emailhandle = (event) => {
+        if (event.target.value != "") {
+            setEmailInput(event.target.value)
+        } else {
+            setEmailInput('')
+        }
+    }
+
 
     useEffect(()=>{
         Modal.setAppElement('#root');
     }, []);
 
-    const navigate = useNavigate();
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleModalOpen = () => {
         setIsModalOpen(true);
@@ -27,7 +39,6 @@ const Joinus = () => {
 
     const handleAddressSelect = (data) => {
         const { zonecode, roadAddress, jibunAddress } = data;
-
         document.querySelector("[name=member_post]").value = zonecode;
         document.querySelector("[name=member_basic_addr]").value = roadAddress || jibunAddress;
 
@@ -47,6 +58,13 @@ const Joinus = () => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
+        const memberPw = formData.get('member_pw');
+        const verifyPw = formData.get('verify_pw');
+        
+        if (memberPw !== verifyPw) {
+            alert("비밀번호가 일치하지않습니다 다시입력해주세요");
+            return; // Stop the form submission
+        }
         axios
             .post("http://localhost:8080/member/reg_user", formData)
             .then((response)=>{
@@ -58,10 +76,33 @@ const Joinus = () => {
             });
     };
 
+    useEffect(() => {
+        axios
+            .get("http://localhost:8080/member/selectlist")
+            .then((response) => {
+                const memberIds = response.data.map((member) => member.member_id);
+                setMemberId(memberIds);
+            })
+            .catch((error) => {
+                console.error("중복확인 데이터 받아오는 에러입니다" + error);
+            });
+    }, []);
+
+
+    const inputIdFunction = (e) => {
+    setInputId(e.target.value);
+    }
+
+    const checkId = () => {
+        if (memberId.includes(inputId)) {
+            alert("이미 사용중인 아이디입니다");
+            setInputId("");
+        } else {
+            alert("사용할 수 있는 아이디입니다");
+        }
+    };
     return (
 
-        <>
-        <Topimg />
         <section className={style.main}>
             <h1 className={style.join_us}>Join Us</h1>
 
@@ -70,17 +111,17 @@ const Joinus = () => {
                     <table>
                         <tbody>
                             <tr>
-                                <th>ID</th>
+                                <td>ID</td>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.userId}>
-                                        <input type="text" className="id" name="member_id" required />
-                                        <button>중복확인</button>
+                                        <input type="text" className="id" name="member_id"  onChange={inputIdFunction} value={inputId} required />
+                                        <button onClick={checkId}>중복확인</button>
                                     </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <th>NAME</th>
+                                <td>NAME</td>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.userName}>
                                         <input type="text" className="name" name="member_name" required />
@@ -89,7 +130,7 @@ const Joinus = () => {
                             </tr>
 
                             <tr>
-                                <th>닉네임</th>
+                                <td>닉네임</td>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.userName}>
                                         <input type="text" className="name" name="member_nick" required />
@@ -98,7 +139,7 @@ const Joinus = () => {
                             </tr>
                             
                             <tr>
-                                <th>PASSWORD</th>
+                                <td>PASSWORD</td>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.userPw}>
                                         <input type="password" className="pw" name="member_pw" required />
@@ -107,7 +148,7 @@ const Joinus = () => {
                             </tr>
 
                             <tr>
-                                <th>VERIFY PASSWORD</th>
+                                <td>VERIFY PASSWORD</td>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.userPw}>
                                         <input type="password" className="pw" name="verify_pw" required />
@@ -116,22 +157,17 @@ const Joinus = () => {
                             </tr>
 
                             <tr>
-                                <th>E-MAIL</th>
+                                <td>E-MAIL</td>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.email}>
-                                        <input type="text" name="member_email" required /> @
-                                        <select name="email_domain">
-                                            <option value="naver.com">naver.com</option>
-                                            <option value="daum.net">daum.net</option>
-                                            <option value="gmail.com">gmail.com</option>
-                                        </select>
+                                        <input type="email" name="member_email" required />
                                     </div>
                                     <input type="checkbox" /> 이메일 수신 동의
                                 </td>
                             </tr>
 
                             <tr>
-                                <th>PHONE NUMBER</th>
+                                <td>PHONE NUMBER</td>
                                 <td className={style.joinusInputTd}>
                                     <div className={style.userPhone}>
                                         <input type="text" minLength="11" maxLength="11" size="15" name="member_phone" required />
@@ -140,16 +176,16 @@ const Joinus = () => {
                             </tr>
 
                             <tr>
-                                <th>우편번호</th>
+                                <td>우편번호</td>
                                 <td className={style.joinusInputTd}>
                                     <div>
                                         <input type="text" name="member_post" placeholder="우편번호" readOnly/>
-                                        <button type="button" className={style.post_btn} onClick={handleModalOpen}>검색</button>
+                                        <button type="button" className="find-address-btn" onClick={handleModalOpen}>검색</button>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <th>기본주소</th>
+                                <td>기본주소</td>
                                 <td className={style.joinusInputTd}>
                                     <div>
                                         <input type="text" name="member_basic_addr" placeholder="기본주소"/>
@@ -157,7 +193,7 @@ const Joinus = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <th>상세주소</th>
+                                <td>상세주소</td>
                                 <td className={style.joinusInputTd}>
                                     <div>
                                         <input type="text" name="member_detail_addr" placeholder={"상세주소"}/>
@@ -188,7 +224,6 @@ const Joinus = () => {
                 </div>
             </form>
         </section>
-        </>
     );
 }
 

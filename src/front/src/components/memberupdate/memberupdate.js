@@ -77,12 +77,12 @@ const MemberUpdate = () => {
             <form id='myForm' onSubmit={handleSubmit} method="post" className={style.edit_member}>
                 <input type="hidden" name="member_id" value={myInfo?.member_id}/>
                 <div className={style.container}>
-                    <h1 className={style.memberUpdateText}>Edit Information</h1>
+                    <h1 className={style.memberUpdateText}>회원 정보 변경</h1>
                 </div>
 
                 <div className={style.memberUpdateTable}>
-                <table >
-                    <tbody>
+                    <table >
+                        <tbody>
                         <tr className={style.nick}>
                             <th>
                                 <label>닉네임</label>
@@ -119,44 +119,44 @@ const MemberUpdate = () => {
                         </tr>
 
                         <tr className={style.post}>
-                        <th>
-                            <label>주소</label>
-                        </th>
-                        <td>
-                            <input type="text" name="member_post"  placeholder={myInfo?.member_post} readOnly />
-                            <button type="button" className={style.post_btn} onClick={handleModalOpen}>검색</button>
-                        </td>
-                            
+                            <th>
+                                <label>주소</label>
+                            </th>
+                            <td>
+                                <input type="text" name="member_post"  placeholder={myInfo?.member_post} readOnly />
+                                <button type="button" className={style.post_btn} onClick={handleModalOpen}>검색</button>
+                            </td>
+
                         </tr>
 
                         <tr className={style.basic_post}>
-                        <th></th>
-                        <td >
-                            <input type="text" name="member_basic_addr" placeholder={myInfo?.member_basic_addr} readOnly />
-                        </td>
+                            <th></th>
+                            <td >
+                                <input type="text" name="member_basic_addr" placeholder={myInfo?.member_basic_addr} readOnly />
+                            </td>
                         </tr>
 
                         <tr className={style.detail_post}>
-                        <th></th>
-                        <td >
-                            <input type="text" name="member_detail_addr" required placeholder={myInfo?.member_detail_addr} />
-                            <p className={style.post_p}>상세주소를 정확히 작성해주세요</p>
-                        </td>
+                            <th></th>
+                            <td >
+                                <input type="text" name="member_detail_addr" required placeholder={myInfo?.member_detail_addr} />
+                                <p className={style.post_p}>상세주소를 정확히 작성해주세요</p>
+                            </td>
                         </tr>
 
                         <tr className={style.point}>
-                        <th>
-                            <label>보유 포인트</label>
-                        </th>
-                        <td>
-                            <input type="text" name="member_point" required placeholder={myInfo?.member_point} value={myInfo?.member_point} readOnly/>
-                        </td>
+                            <th>
+                                <label>보유 포인트</label>
+                            </th>
+                            <td>
+                                <input type="text" name="member_point" required placeholder={myInfo?.member_point} value={myInfo?.member_point} readOnly/>
+                            </td>
                         </tr>
                         <Modal isOpen={isModalOpen} onRequestClose={handleModalClose} style={modalStyles}>
                             <DaumPostcode onComplete={handleAddressSelect} />
                         </Modal>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
                 </div>
                 <button className={style.saveBtn} type="submit" id="saveBtn">정보 수정</button>
             </form>

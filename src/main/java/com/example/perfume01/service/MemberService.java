@@ -21,6 +21,8 @@ public interface MemberService {
 
     int mupdate(MemberVO vo);
 
+    int pointupdate(MemberVO vo);
+
 //    int mdelete(MemberVO vo);
     int mdelete(MemberVO vo);
 
@@ -28,4 +30,14 @@ public interface MemberService {
     // === 맴버 검색 항목 ===
     List<MemberVO> searchList(SearchCriteria criteria);
     int searchTotalCount(SearchCriteria criteria);
+
+    int changePassword(String member_id, String member_pw);
+
+    int updateMailKey(MemberVO vo);
+
+    int updateMailAuth(MemberVO vo);
+
+    int emailAuthFail(String member_id);
+
+    int findPw(String member_id, String member_email);
 }

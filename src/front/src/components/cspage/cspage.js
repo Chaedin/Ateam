@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Accordion } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import AccordionItem from "../cspage/accordionitem";
 import Cspagebutton from "../cspage/cspagebutton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

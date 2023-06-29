@@ -1,10 +1,8 @@
 .iteminfo_wrapper {
-    border: 1px solid red;
     display: flex;
     justify-content: center;
 }
 .iteminfo_imgbox {
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
 }
@@ -12,29 +10,54 @@
     width: 400px;
     height: 400px;
 }
-.product_subimgbox {
-    border: 1px solid red;
-    display: flex;
-    justify-content: space-evenly;
-    width: 400px;
-    height: 100px;
-    align-items: center;
-}
-.product_subimgbox div {
-    border: 1px solid red;
-    width: 80px;
-    height: 80px;
-}
+
 .iteminfo_textbox {
-    border: 1px solid red;
     width: 400px;
-    height: 500px;
+    height: 400px;
+
 }
+.iteminfo_textbox h1 {
+    height: 100px;
+    padding: 0;
+    margin: 0;
+}
+
+.iteminfo_textbox h3,
+.iteminfo_textbox h4 {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    max-width: 100%; /* 수정된 부분 */
+}
+
+.iteminfo_textbox h3 {
+    line-height: 50px;
+    padding-left: 10px;
+}
+
+.iteminfo_textbox .product_content > p {
+    height: 150px;
+    overflow-y: scroll;
+    padding-left: 10px;
+    border: 1px lightgrey solid;
+    border-radius: 5px;
+}
+
+.iteminfo_textbox p {
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    padding-left: 10px;
+}
+
 .stock_and_button {
     display: flex;
-    margin: 10px auto;
+    margin: 0px auto;
+    padding: calc((70px - 30px) / 2) 0;
     width: 300px;
     justify-content: space-evenly;
+    lien-height: 40px;
+
 }
 .stock_and_button input {
     width: 50px;

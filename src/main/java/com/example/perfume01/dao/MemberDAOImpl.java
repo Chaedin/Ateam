@@ -45,9 +45,16 @@ public class MemberDAOImpl implements MemberDAO {
         return mapper.minsert(vo);
     }
 
+
+
     @Override
     public int mupdate(MemberVO vo) {
         return mapper.mupdate(vo);
+    }
+
+    @Override
+    public int pointupdate(MemberVO vo) {
+        return mapper.pointupdate(vo);
     }
 
     @Override
@@ -71,6 +78,31 @@ public class MemberDAOImpl implements MemberDAO {
     @Override
     public int searchTotalCount(SearchCriteria criteria) {
         return mapper.searchTotalCount(criteria);
+    }
+
+    @Override
+    public int updateMailKey(MemberVO vo) {
+        return mapper.updateMailKey(vo);
+    }
+
+    @Override
+    public int updateMailAuth(MemberVO vo) {
+        return mapper.updateMailAuth(vo);
+    }
+
+    @Override
+    public int emailAuthFail(String member_id) {
+        return mapper.emailAuthFail(member_id);
+    }
+
+    @Override
+    public int changePassword(String member_id, String member_pw) {
+        return mapper.changePassword(member_id, member_pw);
+    }
+
+    @Override
+    public int findPw(String member_id, String member_email) {
+        return mapper.findPw(member_id, member_email);
     }
 
 

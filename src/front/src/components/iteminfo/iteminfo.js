@@ -3,7 +3,6 @@ import style from './iteminfo.module.css';
 import {Link, useParams, useNavigate} from "react-router-dom";
 import axios, {get} from "axios";
 import Board from "../board/board";
-import board from "../board/board";
 
 const Iteminfo = () => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -26,13 +25,6 @@ const Iteminfo = () => {
             console.error("유저 정보를 가져오는 중 오류 발생", error);
         }
     }
-
-    const openModal = () => {
-        setModalOpen(true);
-    };
-    const closeModal = () => {
-        setModalOpen(false);
-    };
 
     // 장바구니에 상품 추가
     // 일단 하드코딩 해놓은 상태이기에 동적으로 설정해야함
@@ -78,7 +70,7 @@ const Iteminfo = () => {
 
     return (
         <>
-            <form onChange={board}>
+            <form >
                 <div className={style.iteminfo_wrapper}>
                     <div className={style.iteminfo_imgbox}>
                         <div className={style.product_mainimg}>
@@ -95,16 +87,16 @@ const Iteminfo = () => {
                     </div>
                     <div className={style.iteminfo_textbox}>
                         <div className={style.product_name}>
-                            상품명 : {product.product_name}
+                            <h1>상품명 : {product.product_name}</h1>
                         </div>
                         <div className={style.product_price}>
-                            가격 : {product.product_price}
+                            <h3>가격 : {product.product_price}</h3>
                         </div>
                         <div className={style.product_content}>
-                            상품 세부 정보 : {product.product_content}
+                        <p><h4>상품 세부 정보 : </h4><p>{product.product_content} </p></p>
                         </div>
                         <div className={style.product_delivery_price}>
-                            배송비 : {product.product_delivery_price}
+                            <p>배송비 : {product.product_delivery_price}</p>
                         </div>
                         <div className={style.stock_and_button}>
                             <input

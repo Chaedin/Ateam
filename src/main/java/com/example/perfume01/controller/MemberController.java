@@ -5,6 +5,8 @@ package com.example.perfume01.controller;
         import com.example.perfume01.dao.MemberDAO;
         import com.example.perfume01.dto.ResponseDTO;
         import com.example.perfume01.dto.UserDTO;
+        import com.example.perfume01.mail.MailHandler;
+        import com.example.perfume01.mail.RandomComponent;
         import com.example.perfume01.service.MemberService;
         import com.example.perfume01.vo.MemberVO;
         import lombok.AllArgsConstructor;
@@ -13,6 +15,9 @@ package com.example.perfume01.controller;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.http.HttpStatus;
         import org.springframework.http.ResponseEntity;
+        import org.springframework.mail.SimpleMailMessage;
+        import org.springframework.mail.javamail.JavaMailSender;
+        import org.springframework.mail.javamail.JavaMailSenderImpl;
         import org.springframework.security.authentication.AuthenticationManager;
         import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
         import org.springframework.security.core.Authentication;
@@ -49,6 +54,11 @@ public class MemberController {
     PasswordEncoder passwordEncoder;
 
     AuthenticationManager authenticationManager;
+
+    @Autowired
+    RandomComponent randomComponent;
+
+    MailHandler mailHandler;
 
     // 관리자페이지 로그인 테스트용 (더미)
     @PostMapping("/loginRest")
@@ -137,7 +147,7 @@ public class MemberController {
 
 
     @PostMapping("/memberUpdateRest")
-    public String mupdate(HttpServletRequest request, Model model,MemberVO vo) throws Exception {
+    public String mupdate(Model model,MemberVO vo) throws Exception {
         model.addAttribute("mlist", vo);
         String uri = "/member/memberDetail";
         vo.setMember_pw(null);
@@ -263,6 +273,21 @@ public class MemberController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("수정실패2");
         }
     }
+
+    @PostMapping("/pointupdate")
+    public ResponseEntity<?> pointUpdate(@RequestBody MemberVO vo) {
+        try {
+            int result = service.pointupdate(vo);
+            System.out.println("에러확인 = 멤버아이디 : " + vo);
+            if (result > 0) {
+                return ResponseEntity.status(HttpStatus.OK).body("포인트 수정성공");
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("포인트 수정실패1");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("포인트 수정실패2");
+        }
+    }
     
 //    @PostMapping("/changeInfo")
 //    public String changeInfo(MemberVO vo) {
@@ -283,6 +308,31 @@ public class MemberController {
 
         }
         return "null";
+    }
+
+    // 이메일로 비밀번호 재설정
+    @PostMapping("/findpw")
+    public ResponseEntity<?> findPw(@RequestParam("member_id") String member_id,
+                                    @RequestParam("member_email") String member_email) {
+        vo = service.myinfo(member_id);
+        
+        System.out.println("비번찾기 맴버아이디출력 " + vo.getMember_id());
+        System.out.println("비번찾기 맴버이메일출력" + vo.getMember_email());
+        
+        if (vo == null || !vo.getMember_email().equals(member_email)) {
+            return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("정보 불일치");
+        }
+        // 이메일이 일치하면 임시 비밀번호 생성
+        String tempPW = randomComponent.generateString();
+        service.changePassword(vo.getMember_id(), tempPW);
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(vo.getMember_email());
+        msg.setSubject("[Ateam Perfume] 임시 비밀번호 발급");
+        msg.setText("발급된 비밀번호는 " + tempPW + "입니다. 로그인 후 비밀번호 변경을 해주시길 바랍니다.");
+        JavaMailSender sender = new JavaMailSenderImpl();
+        sender.send(msg);
+
+        return ResponseEntity.ok("비밀번호 재설정 성공");
     }
 
 
@@ -331,6 +381,12 @@ public class MemberController {
     @GetMapping("/result")
     public String result(HttpSession session) {
         String rtn = session.getId();
+        return rtn;
+    }
+
+    @GetMapping("/selectlist")
+    public List<MemberVO> selectList() {
+        List<MemberVO> rtn = service.selectList();
         return rtn;
     }
 

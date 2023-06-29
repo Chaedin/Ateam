@@ -39,7 +39,7 @@ const Cart = () => {
                 setUserPoint(response.data.member_point)
             })
             .catch(error => {
-                console.log("장바구니 정보 요청 에러");
+                console.log("유저 정보 요청 에러");
             });
     }, []);
 
@@ -62,13 +62,14 @@ const Cart = () => {
 
     const handleDelete = (product_no) => {
         // 상품 삭제 API 요청
-        axios.delete(`http://localhost:8080/cart/delete?product_no=${product_no}`)
+        const member_id = sessionStorage.getItem('loginID');
+        alert(product_no);
+        axios.delete(`http://localhost:8080/cart/delete?product_no=${product_no}&member_id=${member_id}`)
             .then(response => {
-                // 삭제 성공 후, 장바구니 다시 가져오기
-                const member_id = sessionStorage.getItem('loginID');
                 axios.get(`http://localhost:8080/cart/main?member_id=${member_id}`)
                     .then(response => {
                         setCartItems(response.data);
+                        alert('장바구니에서 상품이 삭제되었습니다.')
                     })
                     .catch(error => {
                         console.log("장바구니 정보 요청 에러");
@@ -76,29 +77,6 @@ const Cart = () => {
             })
             .catch(error => {
                 console.log("상품 삭제 에러");
-            });
-    };
-
-    const handleBulkDelete = () => {
-        // 체크된 상품들의 product_no 배열 생성
-        const selectedProducts = cartItems.filter(item => item.checked === true);
-        const productNos = selectedProducts.map(item => item.product_no);
-
-        // 상품 일괄 삭제 API 요청
-        axios.post('http://localhost:8080/cart/bulk-delete', productNos)
-            .then(response => {
-                // 삭제 성공 후, 장바구니 다시 가져오기
-                const member_id = sessionStorage.getItem('loginID');
-                axios.get(`http://localhost:8080/cart/main?member_id=${member_id}`)
-                    .then(response => {
-                        setCartItems(response.data);
-                    })
-                    .catch(error => {
-                        console.log("장바구니 정보 요청 에러");
-                    });
-            })
-            .catch(error => {
-                console.log("상품 일괄 삭제 에러");
             });
     };
 
@@ -114,12 +92,12 @@ const Cart = () => {
 
     return (
         <>
-        <Topimg/>
-        <div className={style.cart_allcontainer}>
-            <h1 className={style.cartText}>Cart</h1>
-            <div>
-                <table className={style.cart_table}>
-                    <thead className={style.cart_table_thead}>
+            <Topimg/>
+            <div className={style.cart_allcontainer}>
+                <h1 className={style.cartText}>Cart</h1>
+                <div>
+                    <table className={style.cart_table}>
+                        <thead className={style.cart_table_thead}>
                         <tr>
                             <td>상품</td>
                             <td>상품이름</td>
@@ -127,8 +105,8 @@ const Cart = () => {
                             <td>가격</td>
                             <td>상품체크</td>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         {
                             /* db에서 데이터 넘어오면 tr,td 동적으로 생성 */
                             cartItems.map(item => (
@@ -147,56 +125,53 @@ const Cart = () => {
                                     </td>
                                     <td className={style.productPrice}>{item.product_price} 원</td>
                                     <td>
-                                        {/*<button onClick={() => handleDelete(item.product_no)}>삭제</button>*/}
-                                        <button className={style.deleteBtn}>삭제</button>
+                                        <button onClick={() => handleDelete(item.product_no)}>삭제</button>
                                     </td>
                                 </tr>
                             ))
                         }
-                    </tbody>
-                </table>
-                    <div >
-                        <button className={style.cartTableBtn} onClick={handleBulkDelete}>선택상품 삭제</button>
-                    </div>
-            </div>
+                        </tbody>
+                    </table>
 
-            <hr className={style.cartHr}/>
-
-            <div className={style.cart_bottomcontainer}>
-                <div className={style.cart_bottomleft_container}>
-                    
-                    <div className={style.cart_box}>판매자에게 문의</div>
-                    <p>상품관련으로 문의하실 사항이 있으시면 아래 박스에 내용을 작성해주세요</p>
-                    <textarea className={style.cart_bottom_textarea}></textarea>
                 </div>
-                <div className={style.cart_bottomrightcontainer}>
-                    <div className={style.cart_box}>주문 내역</div>
-                    <div>
-                        <p>배송비 및 추가 비용은 입력된 값을 기준으로 계산됩니다</p>
-                        <ul>
-                            <li className={style.cart_bottomright_totalprice}>
-                                <strong>보유 포인트</strong>
-                                <strong>{userPoint} 원</strong>
-                                
-                            </li>
-                            
-                            <li className={style.cart_bottomright_price}>
-                                <strong>상품가격</strong>
-                                {/*{cartItems.map(item => (totalPrice + item.product_price*1) )}*/}
-                                
-                                <strong>{totalPrice} 원</strong>
-                            </li>
-                            <p className={style.pointP}>*포인트는 결제 페이지에서 사용가능</p>
-                        </ul>
-                        
 
+                <hr className={style.cartHr}/>
+
+                <div className={style.cart_bottomcontainer}>
+                    <div className={style.cart_bottomleft_container}>
+
+                        <div className={style.cart_box}>판매자에게 문의</div>
+                        <p>상품관련으로 문의하실 사항이 있으시면 아래 박스에 내용을 작성해주세요</p>
+                        <textarea className={style.cart_bottom_textarea}></textarea>
+                    </div>
+                    <div className={style.cart_bottomrightcontainer}>
+                        <div className={style.cart_box}>주문 내역</div>
+                        <div>
+                            <p>배송비 및 추가 비용은 입력된 값을 기준으로 계산됩니다</p>
+                            <ul>
+                                <li className={style.cart_bottomright_totalprice}>
+                                    <strong>보유 포인트</strong>
+                                    <strong>{userPoint} 원</strong>
+
+                                </li>
+
+                                <li className={style.cart_bottomright_price}>
+                                    <strong>상품가격</strong>
+                                    {/*{cartItems.map(item => (totalPrice + item.product_price*1) )}*/}
+
+                                    <strong>{totalPrice} 원</strong>
+                                </li>
+                                <p className={style.pointP}>*포인트는 결제 페이지에서 사용가능</p>
+                            </ul>
+
+
+                        </div>
                     </div>
                 </div>
+                <Link to='/Payment'>
+                    <button className={style.cart_payment} onClick={handleCheckout}>주문하기</button>
+                </Link>
             </div>
-            <Link to='/Payment'>
-                            <button className={style.cart_payment} onClick={handleCheckout}>주문하기</button>
-            </Link>
-        </div>
         </>
     );
 }

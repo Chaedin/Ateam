@@ -6,7 +6,7 @@ section .main {
 }
 
 .join_us {
-    width: 180px;
+    width: 170px;
     margin: 30px auto;
     font-size: var(--font-large);
     border-bottom: 2px solid;
@@ -28,8 +28,7 @@ section .main {
 
 }
 
-.main td,
-.main th {
+.main td {
     padding: 0 40px;
     text-align: left;
 }
@@ -47,7 +46,7 @@ tr .joinusInputTd {
 }
 
 .userPhone input {
-    width: 200px;
+    width: 220px;
 }
 
 section .main div {
@@ -69,16 +68,6 @@ section .main div {
     border-radius: 10%;
     color: var(--color-white);
 
-}
-
-.post_btn {
-    font-size: var(--font-small);
-    width: 50px;
-    line-height: 25px;
-    margin-left: 10px;
-    background-color: var(--color-grey);
-    border-radius: 10%;
-    color: var(--color-white);
 }
 
 section .main p {

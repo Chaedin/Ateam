@@ -30,4 +30,9 @@
                 subtable LIMIT 1
     </select>
 
+    <!-- 상품 총액(포인트계산 완료) 만 저장하는 코드 -->
+    <insert id="payment">
+        INSERT INTO orders_payment (product_no, member_id, product_count, product_price)
+        VALUES (#{product_no}, #{member_id}, #{product_count}, #{product_price})
+    </insert>
 </mapper>

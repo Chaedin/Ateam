@@ -4,7 +4,7 @@ import Modal from "../modal/modal";
 import ReactPaginate from "react-paginate";
 import style from "./iteminfo.module.css"
 
-const Board = () => {
+const Board = ({member_id}) => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [boardList, setBoardList] = useState([]);
@@ -15,12 +15,17 @@ const Board = () => {
         axios
             .get('http://localhost:8080/board/all')
             .then(response => {
-                setBoardList(response.data);
+                if (member_id) {
+                    const filteredList = response.data.filter(item => item.member_id === member_id);
+                    setBoardList(filteredList);
+                } else {
+                    setBoardList(response.data);
+                }
             })
-            .catch((error)=>{
-                console.error("게시글을 불러오는데 실피했습니다.")
-            })
-    }, []);
+            .catch(error => {
+                console.error("게시글을 불러오는데 실패했습니다.")
+            });
+    }, [member_id]);
 
     const openModal = () => {
         setModalOpen(true);
@@ -33,6 +38,8 @@ const Board = () => {
     const handlePageClick = ({ selected }) => {
         setCurrentPage(selected);
     };
+
+
 
     const offset = currentPage * itemsPerPage;
     const currentData = boardList.slice(offset, offset + itemsPerPage);

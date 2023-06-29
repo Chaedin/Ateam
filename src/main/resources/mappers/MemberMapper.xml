@@ -72,6 +72,12 @@
         WHERE ( member_id != 'admin' <include refid="search"></include>
     </select>
 
+    <!-- 회원의 포인트만 업데이트 -->
+    <update id="pointupdate">
+        UPDATE member SET member_point=#{member_point}
+        WHERE member_id=#{member_id}
+    </update>
+
     <!-- 회원검색 두번째방법 -->
     <!--
     <select id="searchMember" resultType="com.example.perfume01.vo.MemberVO">
@@ -122,6 +128,30 @@
     <delete id="delete">
         DELETE member WHERE member_id=${member_id}
     </delete>
+
+
+    <!-- ========================= 메일로 비번 변경관련 (동작이 이상하면 삭제하던지 주석처리) ==================================== -->
+
+    <!-- 회원가입시 이메일 인증을 위한 랜덤번호 저장 -->
+    <update id="updateMailKey" parameterType="com.example.perfume01.vo.MemberVO">
+        UPDATE member SET mail_key${mail_key} WHERE member_email=#{member_email}
+        AND member_id=#{member_id}
+    </update>
+
+    <!-- 이메일로 인증을 하면 DB에 mail_auth 컬럼의 기본값을 0에서 1로 변경 -->
+    <update id="updateMailAuth" parameterType="com.example.perfume01.vo.MemberVO">
+        UPDATE member SET mail_auth=1 WHERE member_email=#{member_email}
+        AND mail_key=#{mail_key}
+    </update>
+
+    <!--
+    로그인시 인증을 했나 안했나를 채크
+    만일 여기서 0이 리턴되면 이메일 인증후에 다시 로그인 해달라는 경고창을 띄워줌
+    -->
+    <select id="emailAuthFail" parameterType="String" resultType="int">
+        SELECT count(*) FROM member
+        WHERE member_id=#{member_id} AND mail_auth=1
+    </select>
 
 </mapper>
 <!-- Mybatis 사용시 인터페이스, 패키지, 클래스명 일치시킬것 -->

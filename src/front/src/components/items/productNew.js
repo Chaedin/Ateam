@@ -22,7 +22,7 @@ export default function ProductsList() {
             <ul className={style.best_seller_items}>
                 {filterProduct.map((product) => (
                     <li key={product.product_no} className={style.best_seller_item} datatype='2'>
-                        <a href=''>
+                        <a href={`/iteminfo/${product.product_no}`}>
                             <div className={style.item_thumbnail}>
                                 <img src={`http://localhost:8080/${product.product_mainimg}`}/>
                                 <div className={style.discription_detail}>

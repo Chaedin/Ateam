@@ -86,7 +86,11 @@ public class AdminProductManageController {
 //        }
 
         String realPath = request.getRealPath("/");
+        realPath = realPath.substring(0, realPath.lastIndexOf("\\"));
+        realPath = realPath.substring(0, realPath.lastIndexOf("\\")+1);
+        realPath = realPath + "resources\\static\\image\\";
         System.out.println("리얼패스 확인 : " + realPath);
+        //C:\eGovFrame-4.0.0\workspace.edu\perfume01\src\main\resources\static\image
 
         File f1 = new File(realPath);
         if (!f1.exists()) {
@@ -95,7 +99,7 @@ public class AdminProductManageController {
 
         f1 = new File(realPath + "01_incense_large.jpg");
         if (!f1.isFile()) {
-            String basicImgPath = "/perfume01\\src\\main\\resources\\static\\image\\01_incense_large.jpg" ;
+            String basicImgPath = "C:\\eGovFrame-4.0.0\\workspace.edu\\perfume01\\src\\main\\resources\\static\\image\\01_incense_large.jpg" ;
 
             if (!new File(basicImgPath).getParentFile().exists()){
                 new File(basicImgPath).getParentFile().mkdirs();
@@ -152,20 +156,6 @@ public class AdminProductManageController {
         return "redirect:list";
     }
 
-    // 상품 상세 정보
-//    @GetMapping("/detail")
-//    public String detail(HttpServletRequest request, Model model, ProductDTO dto, ProductTagDTO tagDTO) {
-//        String uri = "/productManage/detail";
-//
-//        model.addAttribute("plist", service.selectOne(dto));
-//
-//        System.out.println(service.selectOne(dto));
-//
-//        if ("edit".equals(request.getParameter("jCode"))) {
-//            uri = "/productManage/edit";
-//        }
-//        return uri;
-//    }
 
     // 상품 수정
     @GetMapping("/edit")
@@ -185,27 +175,31 @@ public class AdminProductManageController {
         model.addAttribute("productDTO", dto);
         model.addAttribute("productTagDto", tagDTO);
 
+        // C:\eGovFrame-4.0.0\workspace.edu\perfume01\src\main\resources\static\image
+
         MultipartFile uploadfilef1 = dto.getProduct_mainimgf();
         MultipartFile uploadfilef2 = dto.getProduct_subimgf();
         if (uploadfilef1 != null && uploadfilef2 != null && !uploadfilef1.isEmpty() && !uploadfilef2.isEmpty()) {
             String realPath = request.getRealPath("/");
 
+            System.out.println("리얼패스위치 +++" + realPath);
+
             // 개발중인지, 배포중인지를 비교하여 실제 저장위치를 생성
             if (realPath.contains(".idea.")) {
 //                realPath = "/perfume01\\src\\main\\resources\\static\\image\\";
-                realPath = "./perfume01\\src\\main\\resources\\static\\image\\";
+                realPath = "..\\resources\\static\\image\\";
             } else {
-                realPath += "webapp\\resources\\image\\";
+                realPath += "resources\\static\\image\\";
             }
 
             String file1 = realPath + uploadfilef1.getOriginalFilename();
             uploadfilef1.transferTo(new File(file1));
-            String file2 = "webapp/resources/image/" + uploadfilef1.getOriginalFilename();
+            String file2 = "resources/static/image/" + uploadfilef1.getOriginalFilename();
             dto.setProduct_mainimg(file2);
 
             String file3 = realPath + uploadfilef1.getOriginalFilename();
             uploadfilef1.transferTo(new File(file1));
-            String file4 = "webapp/resources/image/" + uploadfilef1.getOriginalFilename();
+            String file4 = "resources/static/image/" + uploadfilef1.getOriginalFilename();
             dto.setProduct_subimg(file4);
         }
         service.edit(dto);

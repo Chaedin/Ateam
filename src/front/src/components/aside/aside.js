@@ -5,6 +5,7 @@ import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import {Link, useNavigate} from 'react-router-dom';
 import style from '../aside/aside.module.css';
 import axios from "axios";
+import Modal from "../modal/modal";
 
 // ========== 쿠키 관련 코드 ========== start
 // 쿠키 저장
@@ -37,34 +38,13 @@ const deleteCookie = (name) => {
 // ========== 쿠키 관련 코드 ========== end
 
 
-const Aside = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+const Aside = ({isLoggedIn, setIsLoggedIn}) => {
+    // const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     const navigate = useNavigate();
+    const [modalOpen, setModalOpen] = useState(false);
 
 
-    // useEffect(() => {
-    //     // 세션 ID를 로컬 스토리지에서 가져옴
-    //     const sessionID = getCookie('JSESSIONID');
-    //
-    //     // 세션 ID가 있는 경우에만 요청을 보냄
-    //     if (sessionID) {
-    //         axios.post('http://localhost:8080/member/login', {}, {
-    //             headers: {
-    //                 'X-Requested-With': 'XMLHttpRequest', // CORS 요청을 위한 헤더 추가
-    //                 'Content-Type': 'application/json', // 요청 컨텐츠 타입
-    //                 'Cookie': `JSESSIONID=${sessionID}` // 세션 ID를 쿠키로 포함시킴
-    //             }
-    //         })
-    //             .then(response => {
-    //                 console.log(response.data); // 데이터 콘솔 출력
-    //                 setIsLoggedIn(true);
-    //             })
-    //             .catch(error => {
-    //                 console.error('로그인 상태 확인에 실패하였습니다.', error);
-    //             });
-    //     }
-    // }, []);
 
     const handleLogout = ()=>{
             // 세션 ID를 로컬 스토리지에서 삭제
@@ -85,14 +65,29 @@ const Aside = () => {
                 }).catch(error => {
                     console.error('로그아웃에 실패하였습니다.', error);
                 });
-
     };
+
+
 
     const scrollToTop = () => {
         window.scrollTo({
             top : 0,
             behavior : 'smooth'
         })
+    }
+
+    const openModal = () => {
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+
+
+    const handleBookMark = () => {
+        window.open('http://localhost:3000', '_blank');
     }
 
     return (
@@ -107,11 +102,10 @@ const Aside = () => {
                     </button>
                 </li>
                 <li>
-                    <div className={style.bubble}>즐겨찾기</div>
-                    <button className={style.aside_btn}>
-                        <a href="">
+                    <div className={style.bubble}>문의하기</div>
+                    <button className={style.aside_btn}
+                        onClick={openModal}>
                             <FontAwesomeIcon icon={farHeart} />
-                        </a>
                     </button>
                 </li>
                 <li>
@@ -121,6 +115,7 @@ const Aside = () => {
                             <button onClick={handleLogout} className={style.aside_btn}>
                                 <FontAwesomeIcon icon={faUser} />
                             </button>
+                            <Modal open={modalOpen} close={closeModal} header="Modal heading" />
                         </>
                     ) : (
                         <>

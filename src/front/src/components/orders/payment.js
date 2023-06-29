@@ -2,9 +2,10 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {map} from "react-bootstrap/ElementChildren";
 import Mypageitem from "../mypage/mypageitem";
-import OrdersItem from "../orders/ordersItem";
+import OrdersItem from "../orders/orders";
 import Topimg from "../topimg/topimg";
 import style from "./payment.module.css";
+import styles from "../cart/cart.module.css";
 
 const Payment = () => {
     const [totalPrice, setTotalPrice] = useState();

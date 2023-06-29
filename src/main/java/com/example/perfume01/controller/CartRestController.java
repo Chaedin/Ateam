@@ -54,7 +54,7 @@ public class CartRestController {
         System.out.println("프론트에서 받아온 멤버 아이디 : " + member_id);
 
         List<CartDTO> itemInfo = service.cartList(member_id);
-        System.out.println(itemInfo.get(0)); //테스트용
+        System.out.println("아이템인포 " + itemInfo); //테스트용
         int cartCnt = service.cartCnt(member_id);
         int isEmpty = itemInfo.size();
 
@@ -92,15 +92,15 @@ public class CartRestController {
 
 
     // 장바구니에서 상품 삭제
-    @GetMapping("/delete")
-    public ResponseEntity<String> delete(HttpSession session,
-                         @RequestParam int product_no,
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> cartDeleteItem(
+                         @RequestParam int product_no, @RequestParam String member_id,
                          @ModelAttribute CartDTO cartDTO) {
-        String member_id = (String) session.getAttribute("member_id");
         cartDTO.setMember_id(member_id);
         cartDTO.setProduct_no(product_no);
         service.cartDeleteItem(cartDTO);
-        return ResponseEntity.ok("장바구니에사 상품을 삭제하였습니다.");
+
+        return ResponseEntity.ok("장바구니에서 상품을 삭제하였습니다.");
     }
 
     // 장바구니 상품 수량 변경

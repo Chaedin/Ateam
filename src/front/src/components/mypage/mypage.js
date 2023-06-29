@@ -4,6 +4,7 @@ import Topimg from '../topimg/topimg';
 import style from '../mypage/mypage.module.css';
 import axios from "axios";
 import {Link} from "react-router-dom";
+import Board from "../board/board";
 
 const Mypage = () => {
     const [myInfo, setMyInfo] = useState();
@@ -30,33 +31,26 @@ const Mypage = () => {
             <section>
                 <div className={style.myPage_container}>
                     <h1 className={style.myPageText}>My Page</h1>
-                    <div className={style.profileArea}>
-                        <div className={style.profile}>
-                            <ul className={style.member_info}>
-                                {myInfo ? (<li>{myInfo.member_name} 님 <p>({myInfo.member_role})</p></li>)
-                                : (<li>Loading</li>)
-                                }
-                                {myInfo ? (<li><p>전화번호 : </p><p>{myInfo.member_phone}</p></li>)
-                                : (<li>Loading</li>)
-                                }
-                                {myInfo ? (<li><p>주소 : </p><p>{myInfo.member_basic_addr}, {myInfo.member_detail_addr}</p></li>)
-                                : (<li>Loading</li>)
-                                }
-                                {myInfo ? (<li><p>Email : </p><p>{myInfo.member_email}</p></li>)
-                                : (<li>Loading</li>)
-                                }
-                                {myInfo ? (<li className={style.point}><p>보유 포인트 : </p><p>{myInfo.member_point} p</p></li>) 
-                                : (<li>보유 포인트 : Loading</li>)
-                                }
+                    <div className={style.profile}>
+                        <div className={style.profile_img}></div>
+                        <ul className={style.member_info}>
+                            {myInfo ? (<li>{myInfo.member_name} 님</li>)
+                             : (<li>로그인 후 이용해주세요</li>)
+                            }
+                            {myInfo ? (<li className={style.layoutCoupon}>
+                                보유 포인트 : {myInfo.member_point}
+                            </li>) : (<li>
+                                보유 포인트 : Loading
+                            </li>)}
 
-                                <li>
-                                    <Link to='/memberupdate'>
-                                        <span className={style.memberupdate}>회원 정보 수정</span>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
+                            <li>
+                                <Link to='/memberupdate'>
+                                    <span>회원 정보 수정</span>
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
+                    <Board member_id={member_id}></Board>
                     <hr />
                     <div className={style.order_check_all}>
                         <div className={style.order}>
