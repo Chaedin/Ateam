@@ -14,8 +14,8 @@ import Terms from './components/terms/terms';
 import Cart from './components/cart/cart';
 import Iteminfo from './components/iteminfo/iteminfo';
 import Orders from "./components/orders/orders";
-import MemberUpdate from "./components/memberUpdate/memberupdate";
-import Payment from "./components/orders/Payment";
+import MemberUpdate from "./components/memberupdate/memberupdate";
+import Payment from "./components/orders/payment";
 import FindPw from "./components/login/findPw";
 import {useEffect, useState} from "react";
 
